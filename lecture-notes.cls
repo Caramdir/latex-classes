@@ -17,7 +17,7 @@
 \RequirePackage[colorlinks=false]{hyperref}
 \RequirePackage{mparhack}  % correct placement of margin notes
 \RequirePackage{mathtools,extpfeil,xfrac} % \mathclap, extensible arrows and
-                                      % slanted fractions
+                                          % slanted fractions
 \RequirePackage{todonotes}
 \RequirePackage{csquotes} % proper quotes
 \RequirePackage{babel}
@@ -25,6 +25,14 @@
 % Fonts
 \RequirePackage{unicode-math}
 \setmainfont[Ligatures=TeX]{XITS} % option makes -- and similar commands work
+\setsansfont[
+	Ligatures=TeX,
+	Extension=.otf,
+	UprightFont= *-regular,
+	BoldFont=*-bold,
+	ItalicFont=*-italic,
+	BoldItalicFont=*-bolditalic
+]{texgyreadventor}
 \setmathfont{XITS Math}
 
 % TikZ
