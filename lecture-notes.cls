@@ -34,6 +34,7 @@
 	BoldItalicFont=*-bolditalic
 ]{texgyreadventor}
 \setmathfont{XITS Math}
+\setmathfont[range=\mathscr,Scale=MatchUppercase]{Tangerine Bold}
 
 % TikZ
 \RequirePackage{tikz}
