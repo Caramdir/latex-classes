@@ -40,6 +40,7 @@
 \RequirePackage{tikz}
 \usetikzlibrary{positioning,calc,arrows,decorations.markings,decorations.pathmorphing,matrix}
 \tikzstyle{every picture}+=[>=latex]
+\tikzset{commutative diagram/.style={matrix of math nodes,column sep=2em,row sep=2em,text height=1.5ex, text depth=0.25ex}}
 
 % Theorems and sections
 \theoremstyle{plain}
