@@ -1,7 +1,12 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{caramdir-lecturenotes}[2010/11/06 v0.1 My documentclass for lecture notes]
 
-\LoadClass[
+\PassOptionsToClass{landscape}{scrbook}
+
+\LoadClassWithOptions{scrbook}
+\RequirePackage{scrpage2}
+
+\KOMAoptions{
     open=right, % start chapters on a right page
     fontsize=10pt,
     %DIV=, % basic value for typearea
@@ -10,7 +15,9 @@
                        % calculations?
     headinclude=false, % include the header as part of the text for layout
                        % calculations?
-]{scrbook}
+    pagesize           % correctly specify pdf page size
+}
+\recalctypearea
 
 % Misc packages
 \RequirePackage{amsmath,amsfonts,amssymb,amsthm}
@@ -88,13 +95,29 @@
 % -------------------------
 
 % chapter and section in the header
-\pagestyle{headings}
+\pagestyle{scrheadings}
 
 % set various font options
 \colorlet{sectioningcolor}{cyan!15!blue}
 \setkomafont{chapter}{\normalfont\normalcolor\sffamily\huge\color{sectioningcolor}}
 \setkomafont{section}{\normalfont\normalcolor\sffamily\Large\color{sectioningcolor}}
 \setkomafont{subsection}{\normalfont\normalcolor\sffamily\large\color{sectioningcolor}}
+
+\DeclareOption{kindledx}{
+    \let\ck@kindledx\relax
+    \AtBeginDocument{\cfoot{}
+    \renewcommand*\partpagestyle{empty}
+    \renewcommand*\chapterpagestyle{empty}
+    \renewcommand*\indexpagestyle{empty}}
+}
+
+\DeclareOption{bw}{
+    \let\ck@bw\relax
+    \colorlet{sectioningcolor}{black}
+    \setkomafont{chapter}{\normalfont\normalcolor\sffamily\scshape\huge\color{sectioningcolor}}
+    \setkomafont{section}{\normalfont\normalcolor\sffamily\scshape\Large\color{sectioningcolor}}
+    \setkomafont{subsection}{\normalfont\normalcolor\sffamily\scshape\large\color{sectioningcolor}}
+}    
 
 % -------------------------
 % The title page
@@ -113,7 +136,7 @@
 \newcommand\maketitlepage{%
 \begin{titlepage}
     \sffamily
-    \vspace*{3cm}
+    \ifx\ck@kindledx\relax\else\vspace*{3cm}\fi
 
     \noindent
     \huge\color{sectioningcolor}
@@ -154,3 +177,10 @@ USA.
 \end{titlepage}
 \cleardoublepage
 }
+
+\ProcessOptions\relax
+
+\ifx\ck@kindledx\relax
+    \RequirePackage[papersize={19.5cm,12.5cm},lmargin=0.2cm,rmargin=5cm,marginparwidth=4.5cm,marginparsep=0.3cm,bottom=0.2cm,top=0.8cm, headsep=0.3cm,footskip=0cm,twoside=false]{geometry}
+    \pagestyle{scrheadings}
+\fi
