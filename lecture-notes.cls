@@ -1,6 +1,10 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{caramdir-lecturenotes}[2010/11/06 v0.1 My documentclass for lecture notes]
 
+\newif\ifkindledxlandscape
+\newif\ifkindledx
+\newif\ifbw
+
 \PassOptionsToClass{landscape}{scrbook}
 
 \LoadClassWithOptions{scrbook}
@@ -91,33 +95,47 @@
 \newcommand\sidepicture[2][]{\marginpar{#2\\[0.5em]{\footnotesize\itshape #1}}}
 
 % -------------------------
-% Layout
+% Process options and set up layout and formatting
 % -------------------------
 
-% chapter and section in the header
-\pagestyle{scrheadings}
-
-% set various font options
-\colorlet{sectioningcolor}{cyan!15!blue}
-\setkomafont{chapter}{\normalfont\normalcolor\sffamily\huge\color{sectioningcolor}}
-\setkomafont{section}{\normalfont\normalcolor\sffamily\Large\color{sectioningcolor}}
-\setkomafont{subsection}{\normalfont\normalcolor\sffamily\large\color{sectioningcolor}}
-
 \DeclareOption{kindledx}{
-    \let\ck@kindledx\relax
-    \AtBeginDocument{\cfoot{}
-    \renewcommand*\partpagestyle{empty}
-    \renewcommand*\chapterpagestyle{empty}
-    \renewcommand*\indexpagestyle{empty}}
+    \bwtrue
+    \kindledxtrue
+    \kindledxlandscapetrue
 }
 
 \DeclareOption{bw}{
-    \let\ck@bw\relax
+    \bwtrue
+}    
+
+\ProcessOptions\relax
+
+% set various font options
+\ifbw
     \colorlet{sectioningcolor}{black}
     \setkomafont{chapter}{\normalfont\normalcolor\sffamily\scshape\huge\color{sectioningcolor}}
     \setkomafont{section}{\normalfont\normalcolor\sffamily\scshape\Large\color{sectioningcolor}}
     \setkomafont{subsection}{\normalfont\normalcolor\sffamily\scshape\large\color{sectioningcolor}}
-}    
+\else
+    \colorlet{sectioningcolor}{cyan!15!blue}
+    \setkomafont{chapter}{\normalfont\normalcolor\sffamily\huge\color{sectioningcolor}}
+    \setkomafont{section}{\normalfont\normalcolor\sffamily\Large\color{sectioningcolor}}
+    \setkomafont{subsection}{\normalfont\normalcolor\sffamily\large\color{sectioningcolor}}
+\fi
+
+\ifkindledx
+    \AtBeginDocument{%
+        \cfoot{}%
+        \renewcommand*\partpagestyle{empty}%
+        \renewcommand*\chapterpagestyle{empty}%
+        \renewcommand*\indexpagestyle{empty}%
+    }
+
+    \RequirePackage[papersize={19.5cm,12.5cm},lmargin=0.2cm,rmargin=5cm,marginparwidth=4.5cm,marginparsep=0.3cm,bottom=0.2cm,top=0.8cm, headsep=0.3cm,footskip=0cm,twoside=false]{geometry}
+\fi
+
+% chapter and section in the header
+\pagestyle{scrheadings}
 
 % -------------------------
 % The title page
@@ -136,7 +154,7 @@
 \newcommand\maketitlepage{%
 \begin{titlepage}
     \sffamily
-    \ifx\ck@kindledx\relax\else\vspace*{3cm}\fi
+    \ifkindledx\relax\else\vspace*{3cm}\fi
 
     \noindent
     \huge\color{sectioningcolor}
@@ -163,6 +181,10 @@
 \ifx\@disclaimer\@empty\else\@disclaimer\\[1cm]\fi
 %The current version of this text as well as the \LaTeX{} source code can be found
 %at \url{http://caramdir.at/math}.
+\ifkindledxlandscape%
+This version of the document has been specially formatted to fit on a Kindle DX (second generation) in landscape rotation. 
+For optimal viewing select \enquote{actual size} from the text menu.
+\fi
 \vfill
 
 \noindent
@@ -177,10 +199,3 @@ USA.
 \end{titlepage}
 \cleardoublepage
 }
-
-\ProcessOptions\relax
-
-\ifx\ck@kindledx\relax
-    \RequirePackage[papersize={19.5cm,12.5cm},lmargin=0.2cm,rmargin=5cm,marginparwidth=4.5cm,marginparsep=0.3cm,bottom=0.2cm,top=0.8cm, headsep=0.3cm,footskip=0cm,twoside=false]{geometry}
-    \pagestyle{scrheadings}
-\fi
