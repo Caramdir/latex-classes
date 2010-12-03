@@ -25,7 +25,6 @@
 
 % Misc packages
 \RequirePackage{amsmath,amsfonts,amssymb,amsthm}
-\RequirePackage[colorlinks=false]{hyperref}
 \RequirePackage{mparhack}  % correct placement of margin notes
 \RequirePackage{mathtools,extpfeil,xfrac} % \mathclap, extensible arrows and
                                           % slanted fractions
@@ -49,7 +48,7 @@
 
 % TikZ
 \RequirePackage{tikz}
-\usetikzlibrary{positioning,calc,arrows,decorations.markings,decorations.pathmorphing,matrix}
+\usetikzlibrary{positioning,calc,arrows,decorations.markings,decorations.pathmorphing,decorations.pathreplacing,matrix}
 \tikzstyle{every picture}+=[>=latex]
 \tikzset{commutative diagram/.style={matrix of math nodes,column sep=2em,row sep=2em,text height=1.5ex, text depth=0.25ex}}
 
@@ -136,6 +135,12 @@
 
 % chapter and section in the header
 \pagestyle{scrheadings}
+
+% -------------------------
+% hyperref
+% -------------------------
+ 
+\RequirePackage[colorlinks=false]{hyperref}
 
 % -------------------------
 % The title page
