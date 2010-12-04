@@ -2,10 +2,9 @@
 \ProvidesClass{caramdir-lecturenotes}[2010/11/06 v0.1 My documentclass for lecture notes]
 
 \newif\ifkindledxlandscape
+\newif\ifkindledxportrait
 \newif\ifkindledx
 \newif\ifbw
-
-\PassOptionsToClass{landscape}{scrbook}
 
 \LoadClassWithOptions{scrbook}
 \RequirePackage{scrpage2}
@@ -97,10 +96,25 @@
 % Process options and set up layout and formatting
 % -------------------------
 
-\DeclareOption{kindledx}{
+\RequirePackage{xstring}
+
+% set options based on jobname
+\IfEndWith{\jobname}{\detokenize{-kindledxlandscape}}{\kindledxlandscapetrue}{}
+\IfEndWith{\jobname}{\detokenize{-kindledxportrait}}{\kindledxportraittrue}{}
+\IfEndWith{\jobname}{\detokenize{-bw.tex}}{\bwtrue}{}
+
+% set options based on class options
+
+\DeclareOption{kindledxlandscape}{
     \bwtrue
     \kindledxtrue
     \kindledxlandscapetrue
+}
+
+\DeclareOption{kindledxportrait}{
+    \bwtrue
+    \kindledxtrue
+    \kindledxportraittrue
 }
 
 \DeclareOption{bw}{
@@ -108,6 +122,10 @@
 }    
 
 \ProcessOptions\relax
+
+\ifkindledxportrait\kindledxtrue\fi
+\ifkindledxlandscape\kindledxtrue\fi
+\ifkindledx\bwtrue\fi
 
 % set various font options
 \ifbw
@@ -125,12 +143,19 @@
 \ifkindledx
     \AtBeginDocument{%
         \cfoot{}%
+	\ohead{\pagemark}
         \renewcommand*\partpagestyle{empty}%
         \renewcommand*\chapterpagestyle{empty}%
         \renewcommand*\indexpagestyle{empty}%
     }
+\fi
 
+\ifkindledxlandscape
     \RequirePackage[papersize={19.5cm,12.5cm},lmargin=0.2cm,rmargin=5cm,marginparwidth=4.5cm,marginparsep=0.3cm,bottom=0.2cm,top=0.8cm, headsep=0.3cm,footskip=0cm,twoside=false]{geometry}
+\fi
+
+\ifkindledxportrait
+    \RequirePackage[papersize={13.5cm,19cm},lmargin=0.2cm,rmargin=0.5cm,bottom=0.2cm,top=0.8cm,headsep=0.3cm,footskip=0cm,twoside=false]{geometry}
 \fi
 
 % chapter and section in the header
