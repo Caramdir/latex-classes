@@ -155,7 +155,7 @@
 \fi
 
 \ifkindledxportrait
-    \RequirePackage[papersize={13.5cm,19cm},lmargin=0.2cm,rmargin=0.5cm,bottom=0.2cm,top=0.8cm,headsep=0.3cm,footskip=0cm,twoside=false]{geometry}
+    \RequirePackage[papersize={13.3cm,18.8cm},lmargin=0.2cm,rmargin=0.5cm,bottom=0.2cm,top=0.8cm,headsep=0.3cm,footskip=0cm,twoside=false]{geometry}
 \fi
 
 % chapter and section in the header
@@ -214,6 +214,9 @@
 \ifkindledxlandscape%
 This version of the document has been specially formatted to fit on a Kindle DX (second generation) in landscape rotation. 
 For optimal viewing select \enquote{actual size} from the text menu.
+\fi
+\ifkindledxportrait%
+This version of the document has been specially formatted to fit on a Kindle DX (second generation).
 \fi
 \vfill
 
