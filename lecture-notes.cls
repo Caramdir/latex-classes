@@ -30,6 +30,7 @@
 \RequirePackage{todonotes}
 \RequirePackage{csquotes} % proper quotes
 \RequirePackage{babel}
+\RequirePackage{paralist}
 
 % Fonts
 \RequirePackage{unicode-math}
