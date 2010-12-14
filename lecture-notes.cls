@@ -31,6 +31,7 @@
 \RequirePackage{csquotes} % proper quotes
 \RequirePackage{babel}
 \RequirePackage{paralist}
+\RequirePackage{engord}	  % English ordinals
 
 % Fonts
 \RequirePackage{unicode-math}
@@ -41,10 +42,11 @@
 	UprightFont= *-regular,
 	BoldFont=*-bold,
 	ItalicFont=*-italic,
-	BoldItalicFont=*-bolditalic
+	BoldItalicFont=*-bolditalic,
+	Scale=MatchUppercase
 ]{texgyreadventor}
 \setmathfont{XITS Math}
-%\setmathfont[range=\mathscr,Scale=MatchUppercase]{Tangerine Bold}
+\setmathfont[range=\mathscr,Scale=MatchUppercase]{FreeSerif}
 
 % TikZ
 \RequirePackage{tikz}
@@ -210,14 +212,15 @@
 
 \noindent
 \ifx\@disclaimer\@empty\else\@disclaimer\\[1cm]\fi
-%The current version of this text as well as the \LaTeX{} source code can be found
-%at \url{http://caramdir.at/math}.
+The current version of this text as well as the \LaTeX{} source code can be found
+at \url{http://caramdir.at/math}.
+
 \ifkindledxlandscape%
-This version of the document has been specially formatted to fit on a Kindle DX (second generation) in landscape rotation. 
+\noindent This version of the document has been specially formatted to fit on a Kindle DX (second generation) in landscape rotation. 
 For optimal viewing select \enquote{actual size} from the text menu.
 \fi
 \ifkindledxportrait%
-This version of the document has been specially formatted to fit on a Kindle DX (second generation).
+\noindent This version of the document has been specially formatted to fit on a Kindle DX (second generation).
 \fi
 \vfill
 
