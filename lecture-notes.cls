@@ -143,6 +143,10 @@
     \setkomafont{subsection}{\normalfont\normalcolor\sffamily\large\color{sectioningcolor}}
 \fi
 
+\setkomafont{paragraph}{\normalfont\normalcolor\sffamily\bfseries}
+\setkomafont{subparagraph}{\normalfont\normalcolor\sffamily\itshape}
+
+
 \ifkindledx
     \AtBeginDocument{%
         \cfoot{}%
