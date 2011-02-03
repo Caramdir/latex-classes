@@ -4,6 +4,7 @@
 \newif\ifbw
 
 \LoadClassWithOptions{scrartcl}
+\RequirePackage{scrpage2}
 
 \KOMAoptions{
     fontsize=10pt,
@@ -27,10 +28,18 @@
 \RequirePackage{babel}
 \RequirePackage{paralist}
 \RequirePackage{engord}	  % English ordinals
+\RequirePackage{biblatex}
 
 % Fonts
 \RequirePackage{unicode-math}
-\setmainfont[Ligatures=TeX]{XITS} % option makes -- and similar commands work
+\setmainfont[
+	Ligatures=TeX,
+	Extension=.otf,
+	UprightFont= *-regular,
+	BoldFont=*-bold,
+	ItalicFont=*-italic,
+	BoldItalicFont=*-bolditalic,
+]{texgyretermes}
 \setsansfont[
 	Ligatures=TeX,
 	Extension=.otf,
@@ -71,11 +80,8 @@
 \newtheorem{Exs}[Ex]{Examples}
 \newtheorem{Exercise}{Exercise}
 
-% Bibliography
-\bibliographystyle{alphaurl}
-
 % margin notes
-\newcommand\remark[1]{\marginpar{\footnotesize\itshape #1}}
+\newcommand\remark[1]{\leavevmode\marginpar{\footnotesize\itshape #1}}
 \newcommand\sidepicture[2][]{\marginpar{#2\\[0.5em]{\footnotesize\itshape #1}}}
 
 \DeclareOption{bw}{
@@ -97,5 +103,16 @@
 
 \setkomafont{paragraph}{\normalfont\normalcolor\sffamily\bfseries}
 \setkomafont{subparagraph}{\normalfont\normalcolor\sffamily\itshape}
+
+\AtBeginDocument{
+	\clearscrheadfoot
+	\let\@@title\@title
+	\ihead{\normalfont\scshape\@@title}
+	\chead{}
+	\ohead{\pagemark}
+	\cfoot[\pagemark]{}
+	\setheadsepline{0.7pt}
+}
+\pagestyle{scrheadings}
 
 \RequirePackage[colorlinks=false]{hyperref}
