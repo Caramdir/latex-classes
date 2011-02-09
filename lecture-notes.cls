@@ -35,7 +35,17 @@
 
 % Fonts
 \RequirePackage{unicode-math}
-\setmainfont[Ligatures=TeX]{XITS} % option makes -- and similar commands work
+%\setmainfont[Ligatures=TeX]{XITS} % option makes -- and similar commands work
+\setsansfont[
+	Ligatures=TeX,
+	Extension=.otf,
+	UprightFont= *-regular,
+	BoldFont=*-bold,
+	ItalicFont=*-italic,
+	BoldItalicFont=*-bolditalic,
+	Scale=MatchUppercase
+]{texgyretermes}
+%\setmainfont[Ligatures=TeX]{XITS} % option makes -- and similar commands work
 \setsansfont[
 	Ligatures=TeX,
 	Extension=.otf,
@@ -46,7 +56,7 @@
 	Scale=MatchUppercase
 ]{texgyreadventor}
 \setmathfont{XITS Math}
-\setmathfont[range=\mathscr,Scale=MatchUppercase]{FreeSerif}
+%\setmathfont[range=\mathscr,Scale=MatchUppercase]{FreeSerif}
 
 % TikZ
 \RequirePackage{tikz}
@@ -92,7 +102,7 @@
 \makenomenclature
 
 % margin notes
-\newcommand\remark[1]{\marginpar{\footnotesize\itshape #1}}
+\newcommand\remark[1]{\leavevmode\marginpar{\footnotesize\itshape #1}}
 \newcommand\sidepicture[2][]{\marginpar{#2\\[0.5em]{\footnotesize\itshape #1}}}
 
 % -------------------------
@@ -150,10 +160,15 @@
 \ifkindledx
     \AtBeginDocument{%
         \cfoot{}%
-	\ohead{\pagemark}
+        \ohead{\pagemark}
         \renewcommand*\partpagestyle{empty}%
         \renewcommand*\chapterpagestyle{empty}%
         \renewcommand*\indexpagestyle{empty}%
+    }
+\else
+    \AtBeginDocument{%
+        \lehead{\normalfont\scshape\headmark}%
+        \setheadsepline{0.4pt}[\color{black!30}]%
     }
 \fi
 
@@ -206,6 +221,7 @@
     \ifx\@typedby{\ifx\@author\@empty\else\@author\\[1cm]\fi}\else
       written by \@typedby\\[1cm]
     \fi
+    \normalcolor
     \large
     \ifx\@version\@empty\else
       Version \@version\\
@@ -213,7 +229,7 @@
     \ifx\@date\today\else\@date\fi
 
 \clearpage\normalfont\normalsize\normalcolor
-
+\thispagestyle{plain}
 \noindent
 \ifx\@disclaimer\@empty\else\@disclaimer\\[1cm]\fi
 The current version of this text as well as the \LaTeX{} source code can be found
