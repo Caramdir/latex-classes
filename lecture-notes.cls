@@ -28,15 +28,17 @@
 \RequirePackage{mathtools,extpfeil,xfrac} % \mathclap, extensible arrows and
                                           % slanted fractions
 \RequirePackage{todonotes}
-\RequirePackage{csquotes} % proper quotes
+\RequirePackage{csquotes}  % proper quotes
 \RequirePackage{babel}
 \RequirePackage{paralist}
-\RequirePackage{engord}	  % English ordinals
+\RequirePackage{engord}	   % English ordinals
+\RequirePackage{needspace} % to avoid pagebreaks at bad places
+\RequirePackage{iftex,dtklogos}
 
 % Fonts
 \RequirePackage{unicode-math}
-%\setmainfont[Ligatures=TeX]{XITS} % option makes -- and similar commands work
-\setsansfont[
+\def\@mainfont{TeX Gyre Termes}
+\setmainfont[
 	Ligatures=TeX,
 	Extension=.otf,
 	UprightFont= *-regular,
@@ -45,7 +47,7 @@
 	BoldItalicFont=*-bolditalic,
 	Scale=MatchUppercase
 ]{texgyretermes}
-%\setmainfont[Ligatures=TeX]{XITS} % option makes -- and similar commands work
+\def\@sansfont{Tex Gyre Adventor}
 \setsansfont[
 	Ligatures=TeX,
 	Extension=.otf,
@@ -55,6 +57,12 @@
 	BoldItalicFont=*-bolditalic,
 	Scale=MatchUppercase
 ]{texgyreadventor}
+\def\@monofont{Liberation Mono}
+\setmonofont[
+	Ligatures=TeX,
+	Scale=MatchLowercase
+]{Liberation Mono}
+\def\@mathfont{XITS Math}
 \setmathfont{XITS Math}
 %\setmathfont[range=\mathscr,Scale=MatchUppercase]{FreeSerif}
 
@@ -114,7 +122,7 @@
 % set options based on jobname
 \IfEndWith{\jobname}{\detokenize{-kindledxlandscape}}{\kindledxlandscapetrue}{}
 \IfEndWith{\jobname}{\detokenize{-kindledxportrait}}{\kindledxportraittrue}{}
-\IfEndWith{\jobname}{\detokenize{-bw.tex}}{\bwtrue}{}
+\IfEndWith{\jobname}{\detokenize{-bw}}{\bwtrue}{}
 
 % set options based on class options
 
@@ -187,7 +195,7 @@
 % hyperref
 % -------------------------
  
-\RequirePackage[colorlinks=false]{hyperref}
+\RequirePackage[colorlinks=false,unicode=true]{hyperref}
 
 % -------------------------
 % The title page
@@ -243,6 +251,12 @@ For optimal viewing select \enquote{actual size} from the text menu.
 \noindent This version of the document has been specially formatted to fit on a Kindle DX (second generation).
 \fi
 \vfill
+
+\noindent
+This document was typeset with
+\ifluatex Lua\LaTeX\fi\ifxetex \XeLaTeX\fi{} and KOMA-Script.
+The used fonts are \@mainfont, \@sansfont, \@monofont{} and \@mathfont.
+\vspace{1cm}
 
 \noindent
 This work is licensed under the Creative Commons Attribution-Share Alike 3.0 Austria License.
