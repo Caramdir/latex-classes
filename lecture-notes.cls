@@ -23,7 +23,7 @@
 \recalctypearea
 
 % Misc packages
-\RequirePackage{amsmath,amsfonts,amssymb,amsthm}
+\RequirePackage{amsmath,amsfonts,amssymb,amsthm,thmtools}
 \RequirePackage{mparhack}  % correct placement of margin notes
 \RequirePackage{mathtools,extpfeil,xfrac} % \mathclap, extensible arrows and
                                           % slanted fractions
@@ -71,29 +71,6 @@
 \usetikzlibrary{positioning,calc,arrows,decorations.markings,decorations.pathmorphing,decorations.pathreplacing,matrix}
 \tikzstyle{every picture}+=[>=latex]
 \tikzset{commutative diagram/.style={matrix of math nodes,column sep=2em,row sep=2em,text height=1.5ex, text depth=0.25ex}}
-
-% Theorems and sections
-\theoremstyle{plain}
-\newtheorem{Thm}{Theorem}[chapter]
-\newtheorem{Fact}[Thm]{Fact}
-\newtheorem{Prop}[Thm]{Proposition}
-\newtheorem{Cor}[Thm]{Corollary}
-\newtheorem{Lem}[Thm]{Lemma}
-\newtheorem{LemAd}[Thm]{Lemma*}
-\newtheorem{Alg}[Thm]{Algorithm}
-\newtheorem{DefProp}[Thm]{Definition and Proposition}
-
-\theoremstyle{definition}
-\newtheorem{Def}[Thm]{Definition}
-\newtheorem*{Notation}{Notation}
-
-\theoremstyle{remark}
-\newtheorem{Rem}[Thm]{Remark}
-\newtheorem{RemAd}[Thm]{Remark*}
-\newtheorem{Rems}[Thm]{Remarks}
-\newtheorem{Ex}[Thm]{Example}
-\newtheorem{Exs}[Thm]{Examples}
-\newtheorem{Exercise}[Thm]{Exercise}
 
 % Bibliography
 \bibliographystyle{alphaurl}
@@ -196,6 +173,33 @@
 % -------------------------
  
 \RequirePackage[colorlinks=false,unicode=true]{hyperref}
+
+% -------------------------
+% Theorems
+% -------------------------
+
+\theoremstyle{plain}
+\newtheorem{Thm}{Theorem}[chapter]
+\newtheorem{Fact}[Thm]{Fact}
+\newtheorem{Prop}[Thm]{Proposition}
+\newtheorem{Cor}[Thm]{Corollary}
+\newtheorem{Lem}[Thm]{Lemma}
+\newtheorem{LemAd}[Thm]{Lemma*}
+\newtheorem{Alg}[Thm]{Algorithm}
+\newtheorem{DefProp}[Thm]{Definition and Proposition}
+
+\theoremstyle{definition}
+\newtheorem{Def}[Thm]{Definition}
+\newtheorem*{Notation}{Notation}
+
+\theoremstyle{remark}
+\newtheorem{Rem}[Thm]{Remark}
+\newtheorem{RemAd}[Thm]{Remark*}
+\newtheorem{Rems}[Thm]{Remarks}
+\newtheorem{Exercise}[Thm]{Exercise}
+
+\declaretheorem[name=Example,sibling=Thm,qed={$◃$}]{Ex}
+\declaretheorem[name=Examples,sibling=Ex,qed={$◃$}]{Exs}
 
 % -------------------------
 % The title page
