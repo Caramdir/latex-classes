@@ -72,6 +72,13 @@
 \tikzstyle{every picture}+=[>=latex]
 \tikzset{commutative diagram/.style={matrix of math nodes,column sep=2em,row sep=2em,text height=1.5ex, text depth=0.25ex}}
 
+% Workaround for XeTeX underbrace bug
+\ifxetex
+	\def\underbrace#1{\@ifnextchar_{\tikz@@underbrace{#1}}{\tikz@@underbrace{#1}_{}}}
+	\def\tikz@@underbrace#1_#2{\tikz[baseline=(a.base)] {\node[inner xsep=0,inner ysep=1pt] (a) {\(#1\)}; \draw[thick,decorate,decoration={brace,amplitude=5pt}] (a.south east) -- node[below,inner sep=7pt] {\(\scriptstyle #2\)} (a.south west);}}
+\fi
+
+
 % Bibliography
 \bibliographystyle{alphaurl}
 
@@ -198,8 +205,8 @@
 \newtheorem{Rems}[Thm]{Remarks}
 \newtheorem{Exercise}[Thm]{Exercise}
 
-\declaretheorem[name=Example,sibling=Thm,qed={$◃$}]{Ex}
-\declaretheorem[name=Examples,sibling=Ex,qed={$◃$}]{Exs}
+\declaretheorem[name=Example,sibling=Thm,qed={\lower-0.3ex\hbox{$◃$}}]{Ex}
+\declaretheorem[name=Examples,sibling=Ex,qed={\lower-0.3ex\hbox{$◃$}}]{Exs}
 
 % -------------------------
 % The title page
