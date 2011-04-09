@@ -1,17 +1,25 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{math-general}[2011/04/04 Useful commands for writing texts about mathematics]
 
+% constants
+\renewcommand\i{\mathfrak i}        % imaginary unit
+\newcommand\e{\mathrm e}
+
+% often used operators
 \DeclareMathOperator\rank{rank}
 \DeclareMathOperator\Hom{Hom}
 
+% arrows
 \newcommand\isoto\similarrightarrow % isomorphisms
 
 % Quotient #1 / #2.
 \newcommand\rquot[2]{%
     \mathchoice%
-        {\left.#1\middle/kern-0.3ex\lower-0.7ex\hbox{$\displaystyle #2$}\right.}%
+        {\left.#1\middle/\kern-0.3ex\lower0.7ex\hbox{$\displaystyle #2$}\right.}%
         {\left.#1\middle/#2\right.}%
         {\left.#1\middle/#2\right.}%
         {\left.#1\middle/#2\right.}%
 }
 
+% vector spaces
+\newcommand\linspan[1]{\left\langle #1 \right\rangle}
