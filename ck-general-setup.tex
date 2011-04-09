@@ -1,0 +1,119 @@
+\KOMAoptions{
+    fontsize=10pt,
+    %DIV=, % basic value for typearea
+    %BCOR=, % binding correction
+    footinclude=false, % include the footer as part of the text for layout
+                       % calculations?
+    headinclude=false, % include the header as part of the text for layout
+                       % calculations?
+    pagesize           % correctly specify pdf page size
+}
+\recalctypearea
+
+% -------------------------
+% Misc packages
+% -------------------------
+\RequirePackage{amsmath,amsfonts,amssymb,amsthm,thmtools}
+\RequirePackage{mparhack}  % correct placement of margin notes
+\RequirePackage{mathtools,extpfeil,xfrac} % \mathclap, extensible arrows and
+                                          % slanted fractions
+\RequirePackage{todonotes}
+\RequirePackage{csquotes}  % proper quotes
+\RequirePackage{babel}
+\RequirePackage{paralist}
+\RequirePackage{engord}	   % English ordinals
+\RequirePackage{needspace} % to avoid pagebreaks at bad places
+\RequirePackage{iftex,dtklogos}
+\RequirePackage{biblatex}
+
+% -------------------------
+% Fonts
+% -------------------------
+\RequirePackage{unicode-math}
+\def\@mainfont{TeX Gyre Termes}
+\setmainfont[
+	Ligatures=TeX,
+	Extension=.otf,
+	UprightFont= *-regular,
+	BoldFont=*-bold,
+	ItalicFont=*-italic,
+	BoldItalicFont=*-bolditalic,
+	Scale=MatchUppercase
+]{texgyretermes}
+\def\@sansfont{Tex Gyre Adventor}
+\setsansfont[
+	Ligatures=TeX,
+	Extension=.otf,
+	UprightFont= *-regular,
+	BoldFont=*-bold,
+	ItalicFont=*-italic,
+	BoldItalicFont=*-bolditalic,
+	Scale=MatchUppercase
+]{texgyreadventor}
+\def\@monofont{Liberation Mono}
+\setmonofont[
+	Ligatures=TeX,
+	Scale=MatchLowercase
+]{Liberation Mono}
+\def\@mathfont{XITS Math}
+\setmathfont{XITS Math}
+%\setmathfont[range=\mathscr,Scale=MatchUppercase]{FreeSerif}
+
+% -------------------------
+% TikZ
+% -------------------------
+\RequirePackage{tikz}
+\usetikzlibrary{positioning,calc,arrows,decorations.markings,decorations.pathmorphing,decorations.pathreplacing,matrix}
+\tikzstyle{every picture}+=[>=latex]
+\tikzset{commutative diagram/.style={matrix of math nodes,column sep=2em,row sep=2em,text height=1.5ex, text depth=0.25ex}}
+
+% -------------------------
+% Workaround for XeTeX underbrace bug
+% -------------------------
+\ifxetex
+	\def\underbrace#1{\@ifnextchar_{\tikz@@underbrace{#1}}{\tikz@@underbrace{#1}_{}}}
+	\def\tikz@@underbrace#1_#2{\tikz[baseline=(a.base)] {\node[inner xsep=0,inner ysep=1pt] (a) {\(#1\)}; \draw[thick,decorate,decoration={brace,amplitude=5pt}] (a.south east) -- node[below,inner sep=7pt] {\(\scriptstyle #2\)} (a.south west);}}
+\fi
+
+% -------------------------
+% margin notes
+% -------------------------
+\newcommand\remark[1]{\leavevmode\marginpar{\footnotesize\itshape #1}}
+\newcommand\sidepicture[2][]{\marginpar{#2\\[0.5em]{\footnotesize\itshape #1}}}
+
+% -------------------------
+% hyperref
+% -------------------------
+ 
+\RequirePackage[colorlinks=false,unicode=true]{hyperref}
+
+% -------------------------
+% Theorems
+% -------------------------
+
+\expandafter\ifx\csname ck@thmreset\endcsname\relax
+    \def\ck@thmreset{}
+\fi
+
+\theoremstyle{plain}
+\newtheorem{Thm}{Theorem}[\ck@thmreset]
+\newtheorem{Fact}[Thm]{Fact}
+\newtheorem{Prop}[Thm]{Proposition}
+\newtheorem{Cor}[Thm]{Corollary}
+\newtheorem{Lem}[Thm]{Lemma}
+\newtheorem{LemAd}[Thm]{Lemma*}
+\newtheorem{Alg}[Thm]{Algorithm}
+\newtheorem{DefProp}[Thm]{Definition and Proposition}
+
+\theoremstyle{definition}
+\newtheorem{Def}[Thm]{Definition}
+\newtheorem*{Notation}{Notation}
+
+\theoremstyle{remark}
+\newtheorem{Rem}[Thm]{Remark}
+\newtheorem{RemAd}[Thm]{Remark*}
+\newtheorem{Rems}[Thm]{Remarks}
+\newtheorem{Exercise}[Thm]{Exercise}
+
+\declaretheorem[name=Example,sibling=Thm,qed={\lower-0.3ex\hbox{$◃$}}]{Ex}
+\declaretheorem[name=Examples,sibling=Ex,qed={\lower-0.3ex\hbox{$◃$}}]{Exs}

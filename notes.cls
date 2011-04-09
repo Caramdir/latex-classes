@@ -6,83 +6,9 @@
 \LoadClassWithOptions{scrartcl}
 \RequirePackage{scrpage2}
 
-\KOMAoptions{
-    fontsize=10pt,
-    %DIV=, % basic value for typearea
-    %BCOR=, % binding correction
-    footinclude=false, % include the footer as part of the text for layout
-                       % calculations?
-    headinclude=false, % include the header as part of the text for layout
-                       % calculations?
-    pagesize           % correctly specify pdf page size
-}
-\recalctypearea
+\input{ck-general-setup.tex}
 
-% Misc packages
-\RequirePackage{amsmath,amsthm}
-\RequirePackage{mparhack}  % correct placement of margin notes
-\RequirePackage{mathtools,extpfeil,xfrac} % \mathclap, extensible arrows and
-                                          % slanted fractions
-\RequirePackage{todonotes}
-\RequirePackage{csquotes} % proper quotes
-\RequirePackage{babel}
-\RequirePackage{paralist}
-\RequirePackage{engord}	  % English ordinals
-\RequirePackage{biblatex}
-
-% Fonts
-\RequirePackage{unicode-math}
-\setmainfont[
-	Ligatures=TeX,
-	Extension=.otf,
-	UprightFont= *-regular,
-	BoldFont=*-bold,
-	ItalicFont=*-italic,
-	BoldItalicFont=*-bolditalic,
-]{texgyretermes}
-\setsansfont[
-	Ligatures=TeX,
-	Extension=.otf,
-	UprightFont= *-regular,
-	BoldFont=*-bold,
-	ItalicFont=*-italic,
-	BoldItalicFont=*-bolditalic,
-	Scale=MatchUppercase
-]{texgyreadventor}
-\setmathfont{XITS Math}
-\setmathfont[range=\mathscr,Scale=MatchUppercase]{FreeSerif}
-
-% TikZ
-\RequirePackage{tikz}
-\usetikzlibrary{positioning,calc,arrows,decorations.markings,decorations.pathmorphing,decorations.pathreplacing,matrix}
-\tikzstyle{every picture}+=[>=latex]
-\tikzset{commutative diagram/.style={matrix of math nodes,column sep=2em,row sep=2em,text height=1.5ex, text depth=0.25ex}}
-
-% Theorems and sections
-\theoremstyle{plain}
-\newtheorem{Thm}{Theorem}
-\newtheorem{Fact}[Thm]{Fact}
-\newtheorem{Prop}[Thm]{Proposition}
-\newtheorem{Cor}[Thm]{Corollary}
-\newtheorem{Lem}[Thm]{Lemma}
-\newtheorem{LemAd}[Thm]{Lemma*}
-\newtheorem{Alg}[Thm]{Algorithm}
-\newtheorem{DefProp}[Thm]{Definition and Proposition}
-
-\theoremstyle{definition}
-\newtheorem{Def}[Thm]{Definition}
-\newtheorem*{Notation}{Notation}
-
-\theoremstyle{remark}
-\newtheorem{Rem}{Remark}
-\newtheorem{Rems}[Rem]{Remarks}
-\newtheorem{Ex}{Example}
-\newtheorem{Exs}[Ex]{Examples}
-\newtheorem{Exercise}{Exercise}
-
-% margin notes
-\newcommand\remark[1]{\leavevmode\marginpar{\footnotesize\itshape #1}}
-\newcommand\sidepicture[2][]{\marginpar{#2\\[0.5em]{\footnotesize\itshape #1}}}
+\KOMAoptions{numbers=enddot}
 
 \DeclareOption{bw}{
     \bwtrue
@@ -97,8 +23,9 @@
     \setkomafont{subsection}{\normalfont\normalcolor\sffamily\scshape\large\color{sectioningcolor}}
 \else
     \colorlet{sectioningcolor}{cyan!15!blue}
-    \setkomafont{section}{\normalfont\normalcolor\sffamily\Large\color{sectioningcolor}}
-    \setkomafont{subsection}{\normalfont\normalcolor\sffamily\large\color{sectioningcolor}}
+	\setkomafont{title}{\normalfont\normalcolor\scshape\LARGE\color{sectioningcolor}}
+    \setkomafont{section}{\normalfont\normalcolor\scshape\large\color{sectioningcolor}\centering}
+    \setkomafont{subsection}{\normalfont\normalcolor\scshape\color{sectioningcolor}}
 \fi
 
 \setkomafont{paragraph}{\normalfont\normalcolor\sffamily\bfseries}
@@ -116,3 +43,48 @@
 \pagestyle{scrheadings}
 
 \RequirePackage[colorlinks=false]{hyperref}
+
+% -------------------------
+% Title
+% -------------------------
+
+\renewcommand*{\@maketitle}{%
+  \clearpage
+  \let\footnote\thanks
+  \ifx\@extratitle\@empty \else
+    \noindent\@extratitle \next@tpage \if@twoside \null\next@tpage \fi
+  \fi
+  \setparsizes{\z@}{\z@}{\z@\@plus 1fil}\par@updaterelative
+  \ifx\@titlehead\@empty \else
+    \begin{minipage}[t]{\textwidth}
+      \@titlehead
+    \end{minipage}\par
+  \fi
+  \null
+  \vskip 2em%
+  \begin{center}%
+    \ifx\@subject\@empty \else
+      {\subject@font \@subject \par}
+      \vskip 1.5em
+    \fi
+    {\titlefont \@title \par}%
+    \vskip .5em
+    {\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
+    \vskip 1em
+    {\scshape
+      \lineskip .5em%
+      \begin{tabular}[t]{c}
+        \@author
+      \end{tabular}\par
+    }%
+    {\scshape \@date \par}%
+    \vskip \z@ \@plus 1em
+    {\Large \@publishers \par}
+    \ifx\@dedication\@empty \else
+      \vskip 2em
+      {\Large \@dedication \par}
+    \fi
+  \end{center}%
+  \par
+  \vskip 1em
+}%
