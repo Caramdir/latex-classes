@@ -7,9 +7,13 @@
 
 % often used operators
 \DeclareMathOperator\rank{rank}
-\DeclareMathOperator\Hom{Hom}
+\DeclareMathOperator\Hom{Hom}       
+\DeclareMathOperator\supp{supp}     % support
+
+\newcommand\abs[1]{\left|#1\right|} % absolute value
 
 % arrows
+\newcommand\onto\twoheadrightarrow  % surjections
 \newcommand\isoto\similarrightarrow % isomorphisms
 
 % Quotient #1 / #2.
@@ -21,10 +25,13 @@
         {\left.#1\middle/#2\right.}%
 }
 
+\newcommand\cconj\overline      % complex conjugation
+
 % vector spaces
 \newcommand\linspan[1]{\left\langle #1 \right\rangle}
 \renewcommand\vec\mathsf
 
 % matrices
 \newcommand\transpose[1]{#1^{\mathrm{T}}}
-\newcommand\GL[2]{\mathrm{GL}_{#1}(#2)}
+\newcommand\GL[2]{\ensuremath{\mathrm{GL}_{#1}(#2)}}
+\newcommand\SL[2]{\ensuremath{\mathrm{SL}_{#1}(#2)}}
