@@ -47,7 +47,7 @@
 	BoldItalicFont=*-bolditalic,
 	Scale=MatchUppercase
 ]{texgyretermes}
-\def\@sansfont{Tex Gyre Adventor}
+\def\@sansfont{TeX Gyre Adventor}
 \setsansfont[
 	Ligatures=TeX,
 	Extension=.otf,
@@ -72,7 +72,7 @@
 \tikzstyle{every picture}+=[>=latex]
 \tikzset{commutative diagram/.style={matrix of math nodes,column sep=2em,row sep=2em,text height=1.5ex, text depth=0.25ex}}
 
-% Workaround for XeTeX underbrace bug
+% Workaround for XeTeX/unicode-math underbrace bug
 \ifxetex
 	\def\underbrace#1{\@ifnextchar_{\tikz@@underbrace{#1}}{\tikz@@underbrace{#1}_{}}}
 	\def\tikz@@underbrace#1_#2{\tikz[baseline=(a.base)] {\node[inner xsep=0,inner ysep=1pt] (a) {\(#1\)}; \draw[thick,decorate,decoration={brace,amplitude=5pt}] (a.south east) -- node[below,inner sep=7pt] {\(\scriptstyle #2\)} (a.south west);}}
@@ -152,7 +152,8 @@
 \ifkindledx
     \AtBeginDocument{%
         \cfoot{}%
-        \ohead{\pagemark}
+		\chead{\normalfont\scshape\headmark}%
+        \ohead{\normalfont\pagemark}%
         \renewcommand*\partpagestyle{empty}%
         \renewcommand*\chapterpagestyle{empty}%
         \renewcommand*\indexpagestyle{empty}%
