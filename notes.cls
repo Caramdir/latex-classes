@@ -4,26 +4,17 @@
 \newif\ifbw
 
 \LoadClassWithOptions{scrartcl}
-\RequirePackage{scrpage2}
 
 \input{ck-general-setup.tex}
 
 \KOMAoptions{numbers=enddot}
 
-\DeclareOption{bw}{
-    \bwtrue
-}    
-
-\ProcessOptions\relax
-
 % set various font options
 \ifbw
-    \colorlet{sectioningcolor}{black}
     \setkomafont{section}{\normalfont\normalcolor\sffamily\scshape\Large\color{sectioningcolor}}
     \setkomafont{subsection}{\normalfont\normalcolor\sffamily\scshape\large\color{sectioningcolor}}
 \else
-    \colorlet{sectioningcolor}{cyan!15!blue}
-	\setkomafont{title}{\normalfont\normalcolor\scshape\LARGE\color{sectioningcolor}}
+    \setkomafont{title}{\normalfont\normalcolor\scshape\LARGE\color{sectioningcolor}}
     \setkomafont{section}{\normalfont\normalcolor\scshape\large\color{sectioningcolor}\centering}
     \setkomafont{subsection}{\normalfont\normalcolor\scshape\color{sectioningcolor}}
 \fi
@@ -41,8 +32,6 @@
 	\setheadsepline{0.7pt}
 }
 \pagestyle{scrheadings}
-
-\RequirePackage[colorlinks=false]{hyperref}
 
 % -------------------------
 % Title

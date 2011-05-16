@@ -1,87 +1,14 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{caramdir-lecturenotes}[2010/11/06 v0.1 My documentclass for lecture notes]
 
-\newif\ifkindledxlandscape
-\newif\ifkindledxportrait
-\newif\ifkindledx
-\newif\ifbw
-
 \LoadClassWithOptions{scrbook}
-\RequirePackage{scrpage2}
+
+\def\ck@thmreset{chapter}   % reset theorem counter each chapter
+\input{ck-general-setup.tex}
 
 \KOMAoptions{
     open=right, % start chapters on a right page
-    fontsize=10pt,
-    %DIV=, % basic value for typearea
-    %BCOR=, % binding correction
-    footinclude=false, % include the footer as part of the text for layout
-                       % calculations?
-    headinclude=false, % include the header as part of the text for layout
-                       % calculations?
-    pagesize           % correctly specify pdf page size
 }
-\recalctypearea
-
-% Misc packages
-\RequirePackage{amsmath,amsfonts,amssymb,amsthm,thmtools}
-\RequirePackage{mparhack}  % correct placement of margin notes
-\RequirePackage{mathtools,extpfeil,xfrac} % \mathclap, extensible arrows and
-                                          % slanted fractions
-\RequirePackage{todonotes}
-\RequirePackage{csquotes}  % proper quotes
-\RequirePackage{babel}
-\RequirePackage{paralist}
-\RequirePackage{engord}	   % English ordinals
-\RequirePackage{needspace} % to avoid pagebreaks at bad places
-\RequirePackage{iftex,dtklogos}
-
-% Fonts
-\RequirePackage{unicode-math}
-\def\@mainfont{TeX Gyre Termes}
-\setmainfont[
-	Ligatures=TeX,
-	Extension=.otf,
-	UprightFont= *-regular,
-	BoldFont=*-bold,
-	ItalicFont=*-italic,
-	BoldItalicFont=*-bolditalic,
-	Scale=MatchUppercase
-]{texgyretermes}
-\def\@sansfont{TeX Gyre Adventor}
-\setsansfont[
-	Ligatures=TeX,
-	Extension=.otf,
-	UprightFont= *-regular,
-	BoldFont=*-bold,
-	ItalicFont=*-italic,
-	BoldItalicFont=*-bolditalic,
-	Scale=MatchUppercase
-]{texgyreadventor}
-\def\@monofont{Liberation Mono}
-\setmonofont[
-	Ligatures=TeX,
-	Scale=MatchLowercase
-]{Liberation Mono}
-\def\@mathfont{XITS Math}
-\setmathfont{XITS Math}
-%\setmathfont[range=\mathscr,Scale=MatchUppercase]{FreeSerif}
-
-% TikZ
-\RequirePackage{tikz}
-\usetikzlibrary{positioning,calc,arrows,decorations.markings,decorations.pathmorphing,decorations.pathreplacing,matrix}
-\tikzstyle{every picture}+=[>=latex]
-\tikzset{commutative diagram/.style={matrix of math nodes,column sep=2em,row sep=2em,text height=1.5ex, text depth=0.25ex}}
-\tikzset{descr/.style={fill=white,inner sep=1pt}}
-
-% Workaround for XeTeX/unicode-math underbrace bug
-\ifxetex
-	\def\underbrace#1{\@ifnextchar_{\tikz@@underbrace{#1}}{\tikz@@underbrace{#1}_{}}}
-	\def\tikz@@underbrace#1_#2{\tikz[baseline=(a.base)] {\node[inner xsep=0,inner ysep=1pt] (a) {\(#1\)}; \draw[thick,decorate,decoration={brace,amplitude=5pt}] (a.south east) -- node[below,inner sep=7pt] {\(\scriptstyle #2\)} (a.south west);}}
-\fi
-
-
-% Bibliography
-\bibliographystyle{alphaurl}
 
 % Index
 \RequirePackage{makeidx}
@@ -94,53 +21,12 @@
 \renewcommand{\pagedeclaration}[1]{\hfill #1}
 \makenomenclature
 
-% margin notes
-\newcommand\remark[1]{\leavevmode\marginpar{\footnotesize\itshape #1}}
-\newcommand\sidepicture[2][]{\marginpar{#2\\[0.5em]{\footnotesize\itshape #1}}}
-
-% -------------------------
-% Process options and set up layout and formatting
-% -------------------------
-
-\RequirePackage{xstring}
-
-% set options based on jobname
-\IfEndWith{\jobname}{\detokenize{-kindledxlandscape}}{\kindledxlandscapetrue}{}
-\IfEndWith{\jobname}{\detokenize{-kindledxportrait}}{\kindledxportraittrue}{}
-\IfEndWith{\jobname}{\detokenize{-bw}}{\bwtrue}{}
-
-% set options based on class options
-
-\DeclareOption{kindledxlandscape}{
-    \bwtrue
-    \kindledxtrue
-    \kindledxlandscapetrue
-}
-
-\DeclareOption{kindledxportrait}{
-    \bwtrue
-    \kindledxtrue
-    \kindledxportraittrue
-}
-
-\DeclareOption{bw}{
-    \bwtrue
-}    
-
-\ProcessOptions\relax
-
-\ifkindledxportrait\kindledxtrue\fi
-\ifkindledxlandscape\kindledxtrue\fi
-\ifkindledx\bwtrue\fi
-
 % set various font options
 \ifbw
-    \colorlet{sectioningcolor}{black}
     \setkomafont{chapter}{\normalfont\normalcolor\sffamily\scshape\huge\color{sectioningcolor}}
     \setkomafont{section}{\normalfont\normalcolor\sffamily\scshape\Large\color{sectioningcolor}}
     \setkomafont{subsection}{\normalfont\normalcolor\sffamily\scshape\large\color{sectioningcolor}}
 \else
-    \colorlet{sectioningcolor}{cyan!15!blue}
     \setkomafont{chapter}{\normalfont\normalcolor\sffamily\huge\color{sectioningcolor}}
     \setkomafont{section}{\normalfont\normalcolor\sffamily\Large\color{sectioningcolor}}
     \setkomafont{subsection}{\normalfont\normalcolor\sffamily\large\color{sectioningcolor}}
@@ -153,7 +39,7 @@
 \ifkindledx
     \AtBeginDocument{%
         \cfoot{}%
-		\chead{\normalfont\scshape\headmark}%
+        \chead{\normalfont\scshape\headmark}%
         \ohead{\normalfont\pagemark}%
         \renewcommand*\partpagestyle{empty}%
         \renewcommand*\chapterpagestyle{empty}%
@@ -176,39 +62,6 @@
 
 % chapter and section in the header
 \pagestyle{scrheadings}
-
-% -------------------------
-% hyperref
-% -------------------------
- 
-\RequirePackage[colorlinks=false,unicode=true]{hyperref}
-
-% -------------------------
-% Theorems
-% -------------------------
-
-\theoremstyle{plain}
-\newtheorem{Thm}{Theorem}[chapter]
-\newtheorem{Fact}[Thm]{Fact}
-\newtheorem{Prop}[Thm]{Proposition}
-\newtheorem{Cor}[Thm]{Corollary}
-\newtheorem{Lem}[Thm]{Lemma}
-\newtheorem{LemAd}[Thm]{Lemma*}
-\newtheorem{Alg}[Thm]{Algorithm}
-\newtheorem{DefProp}[Thm]{Definition and Proposition}
-
-\theoremstyle{definition}
-\newtheorem{Def}[Thm]{Definition}
-\newtheorem*{Notation}{Notation}
-
-\theoremstyle{remark}
-\newtheorem{Rem}[Thm]{Remark}
-\newtheorem{RemAd}[Thm]{Remark*}
-\newtheorem{Rems}[Thm]{Remarks}
-\newtheorem{Exercise}[Thm]{Exercise}
-
-\declaretheorem[name=Example,sibling=Thm,qed={\lower-0.3ex\hbox{$◃$}}]{Ex}
-\declaretheorem[name=Examples,sibling=Ex,qed={\lower-0.3ex\hbox{$◃$}}]{Exs}
 
 % -------------------------
 % The title page
