@@ -71,6 +71,7 @@
 \usetikzlibrary{positioning,calc,arrows,decorations.markings,decorations.pathmorphing,decorations.pathreplacing,matrix}
 \tikzstyle{every picture}+=[>=latex]
 \tikzset{commutative diagram/.style={matrix of math nodes,column sep=2em,row sep=2em,text height=1.5ex, text depth=0.25ex}}
+\tikzset{descr/.style={fill=white,inner sep=1pt}}
 
 % Workaround for XeTeX/unicode-math underbrace bug
 \ifxetex
