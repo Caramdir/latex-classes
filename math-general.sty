@@ -30,6 +30,13 @@
         {\left.#1\middle/#2\right.}%
         {\left.#1\middle/#2\right.}%
 }
+\newcommand\dquot[3]{%
+    \mathchoice%
+        {\left.\lower0.7ex\hbox{$\displaystyle #1$}\kern-0.3ex\middle\backslash\kern-0.2ex #2 \kern-0.2ex\middle/\kern-0.3ex\lower0.7ex\hbox{$\displaystyle #3$}\right.}%
+        {\left. #1 \middle\backslash #2 \middle/ #3 \right.}%
+        {\left. #1 \middle\backslash #2 \middle/ #3 \right.}%
+        {\left. #1 \middle\backslash #2 \middle/ #3 \right.}%
+}
 
 \newcommand\cconj\overline      % complex conjugation
 
