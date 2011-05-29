@@ -67,6 +67,8 @@
 \RequirePackage{needspace} % to avoid pagebreaks at bad places
 \RequirePackage{iftex,dtklogos}
 \RequirePackage{biblatex}
+\RequirePackage{newunicodechar} % modify unicode mappings
+
 
 % -------------------------
 % Fonts
@@ -153,6 +155,7 @@
 \newtheorem{Fact}[Thm]{Fact}
 \newtheorem{Prop}[Thm]{Proposition}
 \newtheorem{Cor}[Thm]{Corollary}
+\newtheorem{CorAd}[Thm]{Corollary*}
 \newtheorem{Lem}[Thm]{Lemma}
 \newtheorem{LemAd}[Thm]{Lemma*}
 \newtheorem{Alg}[Thm]{Algorithm}
@@ -170,3 +173,10 @@
 
 \declaretheorem[name=Example,sibling=Thm,qed={\lower-0.3ex\hbox{$◃$}}]{Ex}
 \declaretheorem[name=Examples,sibling=Ex,qed={\lower-0.3ex\hbox{$◃$}}]{Exs}
+
+% -------------------------
+% Remap some characters
+% -------------------------
+
+\newunicodechar{ }{ } % no-break space
+\newunicodechar{ }{ } % narrow no-break space
