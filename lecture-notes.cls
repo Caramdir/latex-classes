@@ -78,21 +78,30 @@
 		\rohead{\normalfont\scshape\headmark}%
 	\fi%
 }
-		
 
+% pdf info
+\AtBeginDocument{%
+	\hypersetup{
+		pdfinfo={
+			Title={\@title},
+			Author={\ifx\@author\@empty\ifx\@typedby\@empty\else\@typedby\fi\else\@author\fi}
+		}
+	}%
+}
 
 % -------------------------
 % The title page
 % -------------------------
-\newcommand*{\@course}{}%
+\let\@author\@empty%
+\let\@course\@empty%
 \newcommand{\course}[1]{\gdef\@course{#1}}%
-\newcommand*{\@courseinfo}{}%
+\let\@courseinfo\@empty%
 \newcommand{\courseinfo}[1]{\gdef\@courseinfo{#1}}%
-\newcommand*{\@typedby}{}%
+\let\@typedby\@empty%
 \newcommand{\typedby}[1]{\gdef\@typedby{#1}}%
-\newcommand*{\@version}{}%
+\let\@version\@empty%
 \newcommand{\version}[1]{\gdef\@version{#1}}%
-\newcommand*{\@disclaimer}{}%
+\let\@disclaimer\@empty%
 \newcommand{\disclaimer}[1]{\gdef\@disclaimer{#1}}%
 
 \newcommand\maketitlepage{%
@@ -110,7 +119,7 @@
       \ifx\@courseinfo\@empty\else\\\@courseinfo\fi\\[1cm]
     \fi
     \Large
-    \ifx\@typedby{\ifx\@author\@empty\else\@author\\[1cm]\fi}\else
+    \ifx\@typedby\@empty{\ifx\@author\@empty\else\@author\\[1cm]\fi}\else
       written by \@typedby\\[1cm]
     \fi
     \normalcolor

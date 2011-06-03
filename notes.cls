@@ -33,6 +33,16 @@
 }
 \pagestyle{scrheadings}
 
+% pdf info
+\AtBeginDocument{%
+	\hypersetup{
+		pdfinfo={
+			Title={\@title},
+			Author={\@author}
+		}
+	}%
+}
+
 % -------------------------
 % Title
 % -------------------------
