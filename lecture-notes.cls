@@ -5,16 +5,10 @@
 
 \def\ck@thmreset{chapter}   % reset theorem counter each chapter
 
-% Index (load before hyperref)
+% Load some packages before hyperref
 \RequirePackage{makeidx}
 \RequirePackage{index}
-\makeindex
-
-% List of Notation
-\RequirePackage[noprefix,refpage]{nomencl}
-\renewcommand\nomname{List of Notation}
-\renewcommand{\pagedeclaration}[1]{\hfill #1}
-\makenomenclature
+\RequirePackage[noprefix,refpage,intoc]{nomencl}
 
 
 \input{ck-general-setup.tex}
@@ -65,6 +59,27 @@
 
 % chapter and section in the header
 \pagestyle{scrheadings}
+
+% Index
+\makeindex
+\appto\theindex{%
+	\markboth{\indexname}{\indexname}%
+	\addcontentsline{toc}{chapter}{\indexname}%
+}
+
+% List of Notation
+\renewcommand\nomname{List of Notation}
+\renewcommand{\pagedeclaration}[1]{\hfill #1}
+\makenomenclature
+
+% Backmatter formatting
+\appto\backmatter{%
+	\ifkindledx\else%
+		\rohead{\normalfont\scshape\headmark}%
+	\fi%
+}
+		
+
 
 % -------------------------
 % The title page
