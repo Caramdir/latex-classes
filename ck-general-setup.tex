@@ -2,6 +2,7 @@
 \newif\ifkindledxportrait
 \newif\ifkindledx
 \newif\ifbw
+\newif\iffinal
 
 % -------------------------
 % Process options and set flags
@@ -27,6 +28,10 @@
 \DeclareOption{bw}{
     \bwtrue
 }    
+
+\DeclareOption{final}{
+    \finaltrue
+}
 
 \ProcessOptions\relax
 
@@ -59,7 +64,11 @@
 \RequirePackage{mparhack}  % correct placement of margin notes
 \RequirePackage{mathtools,extpfeil,xfrac} % \mathclap, extensible arrows and
                                           % slanted fractions
-\RequirePackage{todonotes}
+\iffinal
+    \RequirePackage[disable]{todonotes}
+\else
+    \RequirePackage{todonotes}
+\fi
 \RequirePackage{csquotes}  % proper quotes
 \RequirePackage{babel}
 \RequirePackage{paralist}
