@@ -78,6 +78,9 @@
 \RequirePackage[backend=biber]{biblatex}
 \RequirePackage{newunicodechar} % modify unicode mappings
 \RequirePackage{etoolbox}
+\ifluatex
+    \RequirePackage{lualatex-math}
+\fi
 
 
 % -------------------------
