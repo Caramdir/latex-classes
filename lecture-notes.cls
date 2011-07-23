@@ -1,23 +1,135 @@
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{caramdir-lecturenotes}[2010/11/06 v0.1 My documentclass for lecture notes]
-
+%%
+%% This is file `lecture-notes.cls',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% classes.dtx  (with options: `lecture-notes,common')
+%% Copyright (C) 2011 by Clemens Koppensteiner
+%% -------------------------------------------
+%% 
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at
+%%  your option) any later version.
+%% The latest version of this license is in:
+%% 
+%%    http://www.latex-project.org/lppl.txt
+%% 
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+\ProvidesClass{lecture-notes}
+   [2011/07/22 v0.2
+   A class for lecture notes
+   ]
 \LoadClassWithOptions{scrbook}
-
-\def\ck@thmreset{chapter}   % reset theorem counter each chapter
-
-% Load some packages before hyperref
-\RequirePackage{makeidx}
-\RequirePackage{index}
-\RequirePackage[noprefix,refpage,intoc]{nomencl}
-
-
-\input{ck-general-setup.tex}
-
-\KOMAoptions{
-    open=right, % start chapters on a right page
+\RequirePackage{xstring}
+\RequirePackage{iftex}
+\newif\ifkindledxlandscape
+\newif\ifkindledxportrait
+\newif\ifkindledx
+\newif\ifbw
+\newif\iffinal
+\IfEndWith{\jobname}{\detokenize{-kindledxlandscape}}{\kindledxlandscapetrue}{}
+\IfEndWith{\jobname}{\detokenize{-kindledxportrait}}{\kindledxportraittrue}{}
+\IfEndWith{\jobname}{\detokenize{-bw}}{\bwtrue}{}
+\DeclareOption{kindledxlandscape}{
+    \kindledxlandscapetrue
+}
+\DeclareOption{kindledxportrait}{
+    \kindledxportraittrue
+}
+\DeclareOption{bw}{
+    \bwtrue
+}
+\DeclareOption{final}{
+    \finaltrue
 }
 
-% set various font options
+\ProcessOptions\relax
+
+\ifkindledxportrait\kindledxtrue\fi
+\ifkindledxlandscape\kindledxtrue\fi
+\ifkindledx\bwtrue\fi
+\KOMAoptions{
+    fontsize=10pt,
+    footinclude=false,
+    headinclude=false,
+    pagesize,
+    twoside,
+    open=right,
+}
+\recalctypearea
+\ifkindledxlandscape
+    \RequirePackage[papersize={19.5cm,12.5cm},lmargin=0.2cm,rmargin=5cm,marginparwidth=4.5cm,marginparsep=0.3cm,bottom=0.2cm,top=0.8cm, headsep=0.3cm,footskip=0cm,twoside=false]{geometry}
+\fi
+
+\ifkindledxportrait
+    \RequirePackage[papersize={13.3cm,18.8cm},lmargin=0.2cm,rmargin=0.5cm,bottom=0.2cm,top=0.8cm,headsep=0.3cm,footskip=0cm,twoside=false]{geometry}
+\fi
+\RequirePackage{scrpage2}
+\RequirePackage{amsmath,amsfonts,amssymb,amsthm,thmtools}
+\RequirePackage{mathtools,extpfeil,xfrac}
+\RequirePackage{mparhack}  % correct placement of margin notes
+\iffinal
+    \RequirePackage[disable]{todonotes}
+\else
+    \RequirePackage{todonotes}
+\fi
+\RequirePackage{csquotes}
+\ifXeTeX
+    \RequirePackage{polyglossia}
+    \setmainlanguage{english}
+\else
+    \RequirePackage{babel}
+\fi
+\RequirePackage{paralist}
+\RequirePackage{engord}
+\RequirePackage{needspace}
+\RequirePackage{dtklogos}
+\RequirePackage[backend=biber]{biblatex}
+\RequirePackage{etoolbox}
+\ifluatex
+    \RequirePackage{lualatex-math}
+\fi
+\RequirePackage{unicode-math}
+
+\def\ck@mainfont{TeX Gyre Termes}
+\setmainfont[
+  Ligatures=TeX,
+  Extension=.otf,
+  UprightFont= *-regular,
+  BoldFont=*-bold,
+  ItalicFont=*-italic,
+  BoldItalicFont=*-bolditalic,
+  Scale=MatchUppercase
+]{texgyretermes}
+
+\def\ck@sansfont{TeX Gyre Adventor}
+\setsansfont[
+  Ligatures=TeX,
+  Extension=.otf,
+  UprightFont= *-regular,
+  BoldFont=*-bold,
+  ItalicFont=*-italic,
+  BoldItalicFont=*-bolditalic,
+  Scale=MatchUppercase
+]{texgyreadventor}
+
+\def\ck@monofont{Liberation Mono}
+\setmonofont[
+  Ligatures=TeX,
+  Scale=MatchLowercase
+]{Liberation Mono}
+
+\def\ck@mathfont{XITS Math}
+\setmathfont{xits-math.otf}
+\ifbw
+    \colorlet{sectioningcolor}{black}
+\else
+    \colorlet{sectioningcolor}{cyan!15!blue}
+\fi
 \ifbw
     \setkomafont{chapter}{\normalfont\normalcolor\sffamily\scshape\huge\color{sectioningcolor}}
     \setkomafont{section}{\normalfont\normalcolor\sffamily\scshape\Large\color{sectioningcolor}}
@@ -27,10 +139,9 @@
     \setkomafont{section}{\normalfont\normalcolor\sffamily\Large\color{sectioningcolor}}
     \setkomafont{subsection}{\normalfont\normalcolor\sffamily\large\color{sectioningcolor}}
 \fi
-
 \setkomafont{paragraph}{\normalfont\normalcolor\sffamily\bfseries}
 \setkomafont{subparagraph}{\normalfont\normalcolor\sffamily\itshape}
-
+\pagestyle{scrheadings}
 
 \ifkindledx
     \AtBeginDocument{%
@@ -46,52 +157,84 @@
         \lehead{\normalfont\scshape\headmark}%
         \setheadsepline{0.4pt}[\color{black!30}]%
     }
+    \appto\backmatter{%
+\rohead{\normalfont\scshape\headmark}%
+    }
 \fi
-
-\ifkindledxlandscape
-    \RequirePackage[papersize={19.5cm,12.5cm},lmargin=0.2cm,rmargin=5cm,marginparwidth=4.5cm,marginparsep=0.3cm,bottom=0.2cm,top=0.8cm, headsep=0.3cm,footskip=0cm,twoside=false]{geometry}
-\fi
-
-\ifkindledxportrait
-    \RequirePackage[papersize={13.3cm,18.8cm},lmargin=0.2cm,rmargin=0.5cm,bottom=0.2cm,top=0.8cm,headsep=0.3cm,footskip=0cm,twoside=false]{geometry}
-    \renewcommand\remark\footnote
-\fi
-
-% chapter and section in the header
-\pagestyle{scrheadings}
-
-% Index
+\RequirePackage{makeidx}
+\RequirePackage{index}
 \makeindex
 \appto\theindex{%
-	\markboth{\indexname}{\indexname}%
-	\addcontentsline{toc}{chapter}{\indexname}%
+\markboth{\indexname}{\indexname}%
+\addcontentsline{toc}{chapter}{\indexname}%
 }
 
-% List of Notation
+\RequirePackage[noprefix,refpage,intoc]{nomencl}
 \renewcommand\nomname{List of Notation}
 \renewcommand{\pagedeclaration}[1]{\hfill #1}
 \makenomenclature
+\RequirePackage{tikz}
+\usetikzlibrary{
+    positioning,
+    calc,
+    arrows,
+    decorations.markings,
+    decorations.pathmorphing,
+    decorations.pathreplacing,
+    matrix,
+    intersections}
+\tikzstyle{every picture}+=[>=latex]
+\tikzset{commutative diagram/.style={
+    matrix of math nodes,
+    column sep=2em,
+    row sep=2em,
+    text height=1.5ex,
+    text depth=0.25ex}}
+\tikzset{descr/.style={fill=white,inner sep=1pt}}
+\ifxetex
+    \def\underbrace#1{\@ifnextchar_{\tikz@@underbrace{#1}}{\tikz@@underbrace{#1}_{}}}
+    \def\tikz@@underbrace#1_#2{%
+        \tikz[baseline=(a.base)] {
+            \node[inner xsep=0,inner ysep=1pt] (a) {\(#1\)};
+            \draw[thick,decorate,decoration={brace,amplitude=5pt}] (a.south east) --
+                node[below,inner sep=7pt] {\(\scriptstyle #2\)} (a.south west);
+        }%
+    }
+\fi
+\ifkindledxportrait
+    \newcommand\remark{\footnote}
+\else
+    \newcommand\remark[1]{\leavevmode\marginpar{\footnotesize\itshape #1}}
+\fi
 
-% Backmatter formatting
-\appto\backmatter{%
-	\ifkindledx\else%
-		\rohead{\normalfont\scshape\headmark}%
-	\fi%
-}
+\newcommand\sidepicture[2][]{\marginpar{#2\\[0.5em]{\footnotesize\itshape #1}}}
+\RequirePackage{newunicodechar}
+\newunicodechar{ }{ } % no-break space
+\newunicodechar{ }{ } % narrow no-break space
+\RequirePackage[colorlinks=false,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{Thm}{Theorem}[chapter]
+\newtheorem{Fact}[Thm]{Fact}
+\newtheorem{Prop}[Thm]{Proposition}
+\newtheorem{Cor}[Thm]{Corollary}
+\newtheorem{CorAd}[Thm]{Corollary*}
+\newtheorem{Lem}[Thm]{Lemma}
+\newtheorem{LemAd}[Thm]{Lemma*}
+\newtheorem{Alg}[Thm]{Algorithm}
+\newtheorem{DefProp}[Thm]{Definition and Proposition}
 
-% pdf info
-\AtBeginDocument{%
-	\hypersetup{
-		pdfinfo={
-			Title={\@title},
-			Author={\ifx\@author\@empty\ifx\@typedby\@empty\else\@typedby\fi\else\@author\fi}
-		}
-	}%
-}
+\theoremstyle{definition}
+\newtheorem{Def}[Thm]{Definition}
+\newtheorem*{Notation}{Notation}
 
-% -------------------------
-% The title page
-% -------------------------
+\theoremstyle{remark}
+\newtheorem{Rem}[Thm]{Remark}
+\newtheorem{RemAd}[Thm]{Remark*}
+\newtheorem{Rems}[Thm]{Remarks}
+\newtheorem{Exercise}[Thm]{Exercise}
+
+\declaretheorem[name=Example,sibling=Thm,qed={\lower-0.3ex\hbox{$◃$}}]{Ex}
+\declaretheorem[name=Examples,sibling=Ex,qed={\lower-0.3ex\hbox{$◃$}}]{Exs}
 \let\@author\@empty%
 \let\@course\@empty%
 \newcommand{\course}[1]{\gdef\@course{#1}}%
@@ -103,7 +246,14 @@
 \newcommand{\version}[1]{\gdef\@version{#1}}%
 \let\@disclaimer\@empty%
 \newcommand{\disclaimer}[1]{\gdef\@disclaimer{#1}}%
-
+\AtBeginDocument{%
+\hypersetup{
+pdfinfo={
+Title={\@title},
+Author={\ifx\@author\@empty\ifx\@typedby\@empty\else\@typedby\fi\else\@author\fi}
+}
+}%
+}
 \newcommand\maketitlepage{%
 \begin{titlepage}
     \sffamily
@@ -137,7 +287,7 @@ The current version of this text as well as the \LaTeX{} source code can be foun
 at \url{http://caramdir.at/math}.
 
 \ifkindledxlandscape%
-\noindent This version of the document has been specially formatted to fit on a Kindle DX (second generation) in landscape rotation. 
+\noindent This version of the document has been specially formatted to fit on a Kindle DX (second generation) in landscape rotation.
 For optimal viewing select \enquote{actual size} from the text menu.
 \fi
 \ifkindledxportrait%
@@ -163,3 +313,6 @@ USA.
 \end{titlepage}
 \cleardoublepage
 }
+\endinput
+%%
+%% End of file `lecture-notes.cls'.

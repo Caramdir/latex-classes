@@ -1,0 +1,684 @@
+% \iffalse meta-comment
+%<*internal>
+\def\nameofplainTeX{plain}
+\ifx\fmtname\nameofplainTeX\else
+  \expandafter\begingroup
+\fi
+%</internal>
+%<*install>
+\input docstrip.tex
+\keepsilent
+\askforoverwritefalse
+\preamble
+Copyright (C) 2011 by Clemens Koppensteiner
+-------------------------------------------
+
+This file may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either version 1.3
+of this license or (at
+ your option) any later version.
+The latest version of this license is in:
+
+   http://www.latex-project.org/lppl.txt
+
+and version 1.3 or later is part of all distributions of LaTeX
+version 2005/12/01 or later.
+\endpreamble
+\generate{\file{short-notes.cls} {\from{classes.dtx}{short-notes,common}}}
+\generate{\file{lecture-notes.cls} {\from{classes.dtx}{lecture-notes,common}}}
+\generate{\file{paper-notes.cls} {\from{classes.dtx}{paper-notes,common}}}
+%</install>
+%<install>\endbatchfile
+%<*internal>
+\generate{
+  \file{\jobname.ins}{\from{\jobname.dtx}{install}}
+}
+\ifx\fmtname\nameofplainTeX
+  \expandafter\endbatchfile
+\else
+  \expandafter\endgroup
+\fi
+%</internal>
+%
+%<common>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+%<short-notes>\ProvidesClass{short-notes}
+%<lecture-notes>\ProvidesClass{lecture-notes}
+%<paper-notes>\ProvidesClass{paper-notes}
+%<common>   [2011/07/22 v0.2
+%<short-notes>     A class for short notes
+%<lecture-notes>   A class for lecture notes
+%<paper-notes>     A class for notes on articles
+%<common>   ]
+%
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage[T1]{fontenc}
+\usepackage{csquotes,dtklogos}
+\usepackage{lmodern}
+\usepackage[numbered]{hypdoc}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\begin{document}
+  \DocInput{\jobname.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \changes{v0.2}{2011/07/22}{Converted to DTX.}
+% 
+% \PrintChanges
+%
+% \section{Load a base class}
+%
+%    \begin{macrocode}
+%<lecture-notes>\LoadClassWithOptions{scrbook}
+%<!lecture-notes>\LoadClassWithOptions{scrartcl}
+%    \end{macrocode}
+%
+%<*common>
+%
+% Load some packages that are needed to make decisions
+%    \begin{macrocode}
+\RequirePackage{xstring}
+\RequirePackage{iftex}
+%    \end{macrocode}
+%
+% \section{Process options and set flags}
+%
+%    \begin{macrocode}
+\newif\ifkindledxlandscape
+\newif\ifkindledxportrait
+\newif\ifkindledx
+\newif\ifbw
+\newif\iffinal
+%    \end{macrocode}
+%
+% Try to set some options based on the name of the input file.
+%    \begin{macrocode}
+\IfEndWith{\jobname}{\detokenize{-kindledxlandscape}}{\kindledxlandscapetrue}{}
+\IfEndWith{\jobname}{\detokenize{-kindledxportrait}}{\kindledxportraittrue}{}
+\IfEndWith{\jobname}{\detokenize{-bw}}{\bwtrue}{}
+%    \end{macrocode}
+%
+% Set options based on the options passed to the class.
+%    \begin{macrocode}
+\DeclareOption{kindledxlandscape}{
+    \kindledxlandscapetrue
+}
+\DeclareOption{kindledxportrait}{
+    \kindledxportraittrue
+}
+\DeclareOption{bw}{
+    \bwtrue
+}    
+\DeclareOption{final}{
+    \finaltrue
+}
+
+\ProcessOptions\relax
+
+\ifkindledxportrait\kindledxtrue\fi
+\ifkindledxlandscape\kindledxtrue\fi
+\ifkindledx\bwtrue\fi
+%    \end{macrocode}
+%
+% \section{Set up the page geometry}
+%
+% \texttt{footinclude} determines whether the footer is considered as part of the text for the layout calculation.
+% \texttt{headinclude} is the same for the header.
+% \texttt{pagesize} tells KOMA to correctly specify the pdf page size.
+%    \begin{macrocode}
+\KOMAoptions{
+    fontsize=10pt,
+    footinclude=false, 
+    headinclude=false,
+    pagesize,
+%    \end{macrocode}
+%</common>
+% \\ For the lecture notes class we want chapter to open on the right page only.\\
+%<*lecture-notes>
+%    \begin{macrocode}
+    twoside,
+    open=right,
+%    \end{macrocode}
+%</lecture-notes>
+%<*common>
+%    \begin{macrocode}
+}
+\recalctypearea
+%    \end{macrocode}
+% 
+% Set the size of the Kindle DX versions manually.
+%    \begin{macrocode}
+\ifkindledxlandscape
+    \RequirePackage[papersize={19.5cm,12.5cm},lmargin=0.2cm,rmargin=5cm,marginparwidth=4.5cm,marginparsep=0.3cm,bottom=0.2cm,top=0.8cm, headsep=0.3cm,footskip=0cm,twoside=false]{geometry}
+\fi
+
+\ifkindledxportrait
+    \RequirePackage[papersize={13.3cm,18.8cm},lmargin=0.2cm,rmargin=0.5cm,bottom=0.2cm,top=0.8cm,headsep=0.3cm,footskip=0cm,twoside=false]{geometry}
+\fi
+%    \end{macrocode}
+%
+% \section{Load various packages}
+%
+% The KOMA package for setting up the page header and footer.
+%    \begin{macrocode}
+\RequirePackage{scrpage2}
+%    \end{macrocode}
+%
+% The \AMS-math bundle and \texttt{thmtools} for specifying theorem environments.
+%    \begin{macrocode}
+\RequirePackage{amsmath,amsfonts,amssymb,amsthm,thmtools}
+%    \end{macrocode}
+% Various math-related packages to extend functionality (e.g. \cs{mathclap}, extensible arrows and slanted fractions).
+%    \begin{macrocode}
+\RequirePackage{mathtools,extpfeil,xfrac}
+%    \end{macrocode}
+%
+% \texttt{mparhack} tries to place margin notes on the correct side of the page when they are moved across a page boundary.
+%    \begin{macrocode}
+\RequirePackage{mparhack}  % correct placement of margin notes
+%    \end{macrocode}
+% Don't show ToDo notes in the final version of a document.
+%    \begin{macrocode}
+\iffinal
+    \RequirePackage[disable]{todonotes}
+\else
+    \RequirePackage{todonotes}
+\fi
+%    \end{macrocode}
+% Macro for properly nesting quotes.
+%    \begin{macrocode}
+\RequirePackage{csquotes}
+%    \end{macrocode}
+%
+% Load \texttt{babel} or \texttt{polyglossia}, depending on the engine.
+% In the \texttt{babel} case, the language should be passed via the class options.
+%    \begin{macrocode}
+\ifXeTeX
+    \RequirePackage{polyglossia}
+    \setmainlanguage{english}
+\else
+    \RequirePackage{babel}
+\fi
+%    \end{macrocode}
+% List environments.
+%    \begin{macrocode}
+\RequirePackage{paralist}
+%    \end{macrocode}
+% English ordinal numbers
+%    \begin{macrocode}
+\RequirePackage{engord}
+%    \end{macrocode}
+% Telling \LaTeX\ that the next code needs a certain amount of space to avoid page breaks at bad places.
+%    \begin{macrocode}
+\RequirePackage{needspace}
+%    \end{macrocode}
+% Various \TeX\ logos.
+%    \begin{macrocode}
+\RequirePackage{dtklogos}
+%    \end{macrocode}
+%
+% Bibliographies
+%    \begin{macrocode}
+\RequirePackage[backend=biber]{biblatex}
+%    \end{macrocode}
+%
+% Wrappers around \eTeX\ primitives.
+%    \begin{macrocode}
+\RequirePackage{etoolbox}
+%    \end{macrocode}
+%
+% If using \LuaTeX, load some fixes for math.
+%    \begin{macrocode}
+\ifluatex
+    \RequirePackage{lualatex-math}
+\fi
+%    \end{macrocode}
+%
+% \section{Fonts}
+%
+% We use \texttt{fontspec} to load the text fonts and \texttt{unicode-math} for math.
+% The various \cs{ck@...font} macros hold the font names so that they can be referred to in the text.
+%    \begin{macrocode}
+\RequirePackage{unicode-math}
+
+\def\ck@mainfont{TeX Gyre Termes}
+\setmainfont[
+  Ligatures=TeX,
+  Extension=.otf,
+  UprightFont= *-regular,
+  BoldFont=*-bold,
+  ItalicFont=*-italic,
+  BoldItalicFont=*-bolditalic,
+  Scale=MatchUppercase
+]{texgyretermes}
+
+\def\ck@sansfont{TeX Gyre Adventor}
+\setsansfont[
+  Ligatures=TeX,
+  Extension=.otf,
+  UprightFont= *-regular,
+  BoldFont=*-bold,
+  ItalicFont=*-italic,
+  BoldItalicFont=*-bolditalic,
+  Scale=MatchUppercase
+]{texgyreadventor}
+
+\def\ck@monofont{Liberation Mono}
+\setmonofont[
+  Ligatures=TeX,
+  Scale=MatchLowercase
+]{Liberation Mono}
+
+\def\ck@mathfont{XITS Math}
+\setmathfont{xits-math.otf}
+%    \end{macrocode}
+% 
+% \section{Sectioning}
+%
+%    \begin{macrocode}
+\ifbw
+    \colorlet{sectioningcolor}{black}
+\else
+    \colorlet{sectioningcolor}{cyan!15!blue}
+\fi
+%    \end{macrocode}
+%
+%</common>
+%
+% \subsection{Lecture notes}
+%<*lecture-notes>
+%    \begin{macrocode}
+\ifbw
+    \setkomafont{chapter}{\normalfont\normalcolor\sffamily\scshape\huge\color{sectioningcolor}}
+    \setkomafont{section}{\normalfont\normalcolor\sffamily\scshape\Large\color{sectioningcolor}}
+    \setkomafont{subsection}{\normalfont\normalcolor\sffamily\scshape\large\color{sectioningcolor}}
+\else
+    \setkomafont{chapter}{\normalfont\normalcolor\sffamily\huge\color{sectioningcolor}}
+    \setkomafont{section}{\normalfont\normalcolor\sffamily\Large\color{sectioningcolor}}
+    \setkomafont{subsection}{\normalfont\normalcolor\sffamily\large\color{sectioningcolor}}
+\fi
+%    \end{macrocode}
+%</lecture-notes>
+%
+% \subsection{Other classes}
+%<*!lecture-notes>
+%    \begin{macrocode}
+\KOMAoptions{numbers=enddot}
+
+\ifbw
+    \setkomafont{section}{\normalfont\normalcolor\sffamily\scshape\Large\color{sectioningcolor}}
+    \setkomafont{subsection}{\normalfont\normalcolor\sffamily\scshape\large\color{sectioningcolor}}
+\else
+    \setkomafont{title}{\normalfont\normalcolor\scshape\LARGE\color{sectioningcolor}}
+    \setkomafont{section}{\normalfont\normalcolor\scshape\large\color{sectioningcolor}\centering}
+    \setkomafont{subsection}{\normalfont\normalcolor\scshape\color{sectioningcolor}}
+\fi
+%    \end{macrocode}
+%</!lecture-notes>
+%
+% \subsection{Common options}
+%<*common>
+%    \begin{macrocode}
+\setkomafont{paragraph}{\normalfont\normalcolor\sffamily\bfseries}
+\setkomafont{subparagraph}{\normalfont\normalcolor\sffamily\itshape}
+%    \end{macrocode}
+% 
+% \section{Header and footer}
+%
+%    \begin{macrocode}
+\pagestyle{scrheadings}
+%    \end{macrocode}
+%
+%</common>
+% \subsection{Lecture notes}
+%<*lecture-notes>
+%    \begin{macrocode}
+
+\ifkindledx
+    \AtBeginDocument{%
+        \cfoot{}%
+        \chead{\normalfont\scshape\headmark}%
+        \ohead{\normalfont\pagemark}%
+        \renewcommand*\partpagestyle{empty}%
+        \renewcommand*\chapterpagestyle{empty}%
+        \renewcommand*\indexpagestyle{empty}%
+    }
+\else
+    \AtBeginDocument{%
+        \lehead{\normalfont\scshape\headmark}%
+        \setheadsepline{0.4pt}[\color{black!30}]%
+    }
+    \appto\backmatter{%
+		\rohead{\normalfont\scshape\headmark}%
+    }
+\fi
+%    \end{macrocode}
+%</lecture-notes>
+%
+% \subsection{Other classes}
+%<*!lecture-notes>
+%    \begin{macrocode}
+\AtBeginDocument{
+	\clearscrheadfoot
+	\let\@@title\@title
+	\ihead{\normalfont\scshape\@@title}
+	\chead{}
+	\ohead{\pagemark}
+	\cfoot[\pagemark]{}
+	\setheadsepline{0.7pt}
+}
+%    \end{macrocode}
+%</!lecture-notes>
+%
+%<*common>
+%
+% \section{Index and List of Notation}
+% 
+% These are only needed in the lecture notes class.\\
+%</common>
+%<*lecture-notes>
+%    \begin{macrocode}
+\RequirePackage{makeidx}
+\RequirePackage{index}
+\makeindex
+\appto\theindex{%
+	\markboth{\indexname}{\indexname}%
+	\addcontentsline{toc}{chapter}{\indexname}%
+}
+
+\RequirePackage[noprefix,refpage,intoc]{nomencl}
+\renewcommand\nomname{List of Notation}
+\renewcommand{\pagedeclaration}[1]{\hfill #1}
+\makenomenclature
+%    \end{macrocode}
+%</lecture-notes>
+%<*common>
+%
+% \section{Various things}
+%
+% \subsection{TikZ}
+%    \begin{macrocode}
+\RequirePackage{tikz}
+\usetikzlibrary{
+    positioning,
+    calc,
+    arrows,
+    decorations.markings,
+    decorations.pathmorphing,
+    decorations.pathreplacing,
+    matrix,
+    intersections}
+\tikzstyle{every picture}+=[>=latex]
+\tikzset{commutative diagram/.style={
+    matrix of math nodes,
+    column sep=2em,
+    row sep=2em,
+    text height=1.5ex,
+    text depth=0.25ex}}
+\tikzset{descr/.style={fill=white,inner sep=1pt}}
+%    \end{macrocode}
+% 
+% \subsection{Workaround for the \texorpdfstring{\XeTeX}{XeTeX} underbrace bug}
+%
+% See \href{https://github.com/wspr/unicode-math/issues/169}{the bug report}.
+%    \begin{macrocode}
+\ifxetex
+    \def\underbrace#1{\@ifnextchar_{\tikz@@underbrace{#1}}{\tikz@@underbrace{#1}_{}}}
+    \def\tikz@@underbrace#1_#2{%
+        \tikz[baseline=(a.base)] {
+            \node[inner xsep=0,inner ysep=1pt] (a) {\(#1\)};
+            \draw[thick,decorate,decoration={brace,amplitude=5pt}] (a.south east) -- 
+                node[below,inner sep=7pt] {\(\scriptstyle #2\)} (a.south west);
+        }%
+    }
+\fi
+%    \end{macrocode}
+%
+% \subsection{Margin notes}
+%    \begin{macrocode}
+\ifkindledxportrait
+    \newcommand\remark{\footnote}
+\else
+    \newcommand\remark[1]{\leavevmode\marginpar{\footnotesize\itshape #1}}
+\fi
+
+\newcommand\sidepicture[2][]{\marginpar{#2\\[0.5em]{\footnotesize\itshape #1}}}
+%    \end{macrocode}
+%
+% \subsection{Remap some characters}
+% Remap non-breaking spaces to normal space (I sometimes type them accidentally on the Neo keyboard layout).
+%    \begin{macrocode}
+\RequirePackage{newunicodechar}
+\newunicodechar{ }{ } % no-break space
+\newunicodechar{ }{ } % narrow no-break space
+%    \end{macrocode}
+%
+% \section{Load \texttt{hyperref}}
+%
+%    \begin{macrocode}
+\RequirePackage[colorlinks=false,unicode=true]{hyperref}
+%    \end{macrocode}
+% 
+% \section{Set up theorem-like environments}
+%
+% For the lecture notes class, the theorem counter should be reset every chapter.
+% For the shorter notes, it shouldn't be reset.
+%
+%    \begin{macrocode}
+\theoremstyle{plain}
+%    \end{macrocode}
+%</common>
+%    \begin{macrocode}
+%<lecture-notes>\newtheorem{Thm}{Theorem}[chapter]
+%<!lecture-notes>\newtheorem{Thm}{Theorem}
+%    \end{macrocode}
+%<*common>
+%    \begin{macrocode}
+\newtheorem{Fact}[Thm]{Fact}
+\newtheorem{Prop}[Thm]{Proposition}
+\newtheorem{Cor}[Thm]{Corollary}
+\newtheorem{CorAd}[Thm]{Corollary*}
+\newtheorem{Lem}[Thm]{Lemma}
+\newtheorem{LemAd}[Thm]{Lemma*}
+\newtheorem{Alg}[Thm]{Algorithm}
+\newtheorem{DefProp}[Thm]{Definition and Proposition}
+
+\theoremstyle{definition}
+\newtheorem{Def}[Thm]{Definition}
+\newtheorem*{Notation}{Notation}
+
+\theoremstyle{remark}
+\newtheorem{Rem}[Thm]{Remark}
+\newtheorem{RemAd}[Thm]{Remark*}
+\newtheorem{Rems}[Thm]{Remarks}
+\newtheorem{Exercise}[Thm]{Exercise}
+
+\declaretheorem[name=Example,sibling=Thm,qed={\lower-0.3ex\hbox{$◃$}}]{Ex}
+\declaretheorem[name=Examples,sibling=Ex,qed={\lower-0.3ex\hbox{$◃$}}]{Exs}
+%    \end{macrocode}
+%
+% \section{The title page}
+%</common>
+% \subsection{Lecture notes}
+%<*lecture-notes>
+%
+% Some commands to set and store various metadata
+%    \begin{macrocode}
+\let\@author\@empty%
+\let\@course\@empty%
+\newcommand{\course}[1]{\gdef\@course{#1}}%
+\let\@courseinfo\@empty%
+\newcommand{\courseinfo}[1]{\gdef\@courseinfo{#1}}%
+\let\@typedby\@empty%
+\newcommand{\typedby}[1]{\gdef\@typedby{#1}}%
+\let\@version\@empty%
+\newcommand{\version}[1]{\gdef\@version{#1}}%
+\let\@disclaimer\@empty%
+\newcommand{\disclaimer}[1]{\gdef\@disclaimer{#1}}%
+%    \end{macrocode}
+%
+% Store some of that data in the pdf.
+%    \begin{macrocode}
+\AtBeginDocument{%
+	\hypersetup{
+		pdfinfo={
+			Title={\@title},
+			Author={\ifx\@author\@empty\ifx\@typedby\@empty\else\@typedby\fi\else\@author\fi}
+		}
+	}%
+}
+%    \end{macrocode}
+% 
+% The actual title page.
+%    \begin{macrocode}
+\newcommand\maketitlepage{%
+\begin{titlepage}
+    \sffamily
+    \ifkindledx\relax\else\vspace*{3cm}\fi
+
+    \noindent
+    \huge\color{sectioningcolor}
+    \@title\\[0.6cm]
+    \ifx\@course\@empty \else
+      \normalcolor\large
+      based on the course\\
+      \emph{\@course}%
+      \ifx\@courseinfo\@empty\else\\\@courseinfo\fi\\[1cm]
+    \fi
+    \Large
+    \ifx\@typedby\@empty{\ifx\@author\@empty\else\@author\\[1cm]\fi}\else
+      written by \@typedby\\[1cm]
+    \fi
+    \normalcolor
+    \large
+    \ifx\@version\@empty\else
+      Version \@version\\
+    \fi
+    \ifx\@date\today\else\@date\fi
+
+\clearpage\normalfont\normalsize\normalcolor
+\thispagestyle{plain}
+\noindent
+\ifx\@disclaimer\@empty\else\@disclaimer\\[1cm]\fi
+The current version of this text as well as the \LaTeX{} source code can be found
+at \url{http://caramdir.at/math}.
+
+\ifkindledxlandscape%
+\noindent This version of the document has been specially formatted to fit on a Kindle DX (second generation) in landscape rotation. 
+For optimal viewing select \enquote{actual size} from the text menu.
+\fi
+\ifkindledxportrait%
+\noindent This version of the document has been specially formatted to fit on a Kindle DX (second generation).
+\fi
+\vfill
+
+\noindent
+This document was typeset with
+\ifluatex Lua\LaTeX\fi\ifxetex \XeLaTeX\fi{} and KOMA-Script.
+The used fonts are \@mainfont, \@sansfont, \@monofont{} and \@mathfont.
+\vspace{1cm}
+
+\noindent
+This work is licensed under the Creative Commons Attribution-Share Alike 3.0 Austria License.
+To view a copy of this license, visit \url{http://creativecommons.org/licenses/by-sa/3.0/at/}
+or send a letter to\\
+Creative Commons\\
+171 Second Street, Suite 300\\
+San Francisco\\
+California, 94105\\
+USA.
+\end{titlepage}
+\cleardoublepage
+}
+%    \end{macrocode}
+%</lecture-notes>
+%
+% \subsection{Other classes}
+%
+% For \texttt{paper-notes.sty} create the title from a citation.\\
+%<*paper-notes>
+%    \begin{macrocode}
+\let\ck@paperref\@empty
+\def\paperref#1{%
+    \def\ck@paperref{#1}%
+    \title{Notes on: \citeauthor{#1} --- \citetitle{#1}}%
+}
+%    \end{macrocode}
+%</paper-notes>
+%
+%<*!lecture-notes>
+%    \begin{macrocode}
+\AtBeginDocument{%
+	\hypersetup{
+		pdfinfo={
+			Title={\@title},
+			Author={\@author}
+		}
+	}%
+}
+
+\renewcommand*{\@maketitle}{%
+  \clearpage
+  \let\footnote\thanks
+  \ifx\@extratitle\@empty \else
+    \noindent\@extratitle \next@tpage \if@twoside \null\next@tpage \fi
+  \fi
+  \setparsizes{\z@}{\z@}{\z@\@plus 1fil}\par@updaterelative
+  \ifx\@titlehead\@empty \else
+    \begin{minipage}[t]{\textwidth}
+      \@titlehead
+    \end{minipage}\par
+  \fi
+  \null
+  \vskip 2em%
+  \begin{center}%
+    \ifx\@subject\@empty \else
+      {\subject@font \@subject \par}
+      \vskip 1.5em
+    \fi
+%    \end{macrocode}
+%<*paper-notes>
+%    \begin{macrocode}
+    {\titlefont%
+     {\normalcolor Notes on:}\\%
+     {\Large\citeauthor{\ck@paperref}\\}%
+     \citetitle{\ck@paperref}%
+     {\normalcolor\cite{\ck@paperref}}\par%
+    }%
+%    \end{macrocode}
+%</paper-notes>
+%<*short-notes>
+%    \begin{macrocode}
+    {\titlefont \@title \par}%
+%    \end{macrocode}
+%</short-notes>
+%    \begin{macrocode}
+    \vskip .5em
+    {\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
+    \vskip 1em
+    {\scshape
+      \lineskip .5em%
+      \begin{tabular}[t]{c}
+        \@author
+      \end{tabular}\par
+    }%
+    {\scshape \@date \par}%
+    \vskip \z@ \@plus 1em
+    {\Large \@publishers \par}
+    \ifx\@dedication\@empty \else
+      \vskip 2em
+      {\Large \@dedication \par}
+    \fi
+  \end{center}%
+  \par
+  \vskip 1em
+}%
+%    \end{macrocode}
+%</!lecture-notes>
+%<*common>
+%
+%</common>
+% \Finale

@@ -1,10 +1,10 @@
 %%
-%% This is file `paper-notes.cls',
+%% This is file `short-notes.cls',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% classes.dtx  (with options: `paper-notes,common')
+%% classes.dtx  (with options: `short-notes,common')
 %% Copyright (C) 2011 by Clemens Koppensteiner
 %% -------------------------------------------
 %% 
@@ -19,9 +19,9 @@
 %% and version 1.3 or later is part of all distributions of LaTeX
 %% version 2005/12/01 or later.
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
-\ProvidesClass{paper-notes}
+\ProvidesClass{short-notes}
    [2011/07/22 v0.2
-     A class for notes on articles
+     A class for short notes
    ]
 \LoadClassWithOptions{scrartcl}
 \RequirePackage{xstring}
@@ -212,11 +212,6 @@
 
 \declaretheorem[name=Example,sibling=Thm,qed={\lower-0.3ex\hbox{$◃$}}]{Ex}
 \declaretheorem[name=Examples,sibling=Ex,qed={\lower-0.3ex\hbox{$◃$}}]{Exs}
-\let\ck@paperref\@empty
-\def\paperref#1{%
-    \def\ck@paperref{#1}%
-    \title{Notes on: \citeauthor{#1} --- \citetitle{#1}}%
-}
 \AtBeginDocument{%
 \hypersetup{
 pdfinfo={
@@ -245,12 +240,7 @@ Author={\@author}
       {\subject@font \@subject \par}
       \vskip 1.5em
     \fi
-    {\titlefont%
-     {\normalcolor Notes on:}\\%
-     {\Large\citeauthor{\ck@paperref}\\}%
-     \citetitle{\ck@paperref}%
-     {\normalcolor\cite{\ck@paperref}}\par%
-    }%
+    {\titlefont \@title \par}%
     \vskip .5em
     {\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
     \vskip 1em
@@ -273,4 +263,4 @@ Author={\@author}
 }%
 \endinput
 %%
-%% End of file `paper-notes.cls'.
+%% End of file `short-notes.cls'.
