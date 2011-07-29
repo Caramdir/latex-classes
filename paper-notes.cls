@@ -142,13 +142,13 @@
 \setkomafont{subparagraph}{\normalfont\normalcolor\sffamily\itshape}
 \pagestyle{scrheadings}
 \AtBeginDocument{
-\clearscrheadfoot
-\let\@@title\@title
-\ihead{\normalfont\scshape\@@title}
-\chead{}
-\ohead{\pagemark}
-\cfoot[\pagemark]{}
-\setheadsepline{0.7pt}
+    \clearscrheadfoot
+    \let\@@title\@title
+    \ihead{\normalfont\scshape\color{gray}\@@title}
+    \chead{}
+    \ohead{\pagemark}
+    \cfoot[\pagemark]{}
+    \setheadsepline{0.5pt}
 }
 \RequirePackage{tikz}
 \usetikzlibrary{
