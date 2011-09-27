@@ -298,7 +298,7 @@ For optimal viewing select \enquote{actual size} from the text menu.
 \noindent
 This document was typeset with
 \ifluatex Lua\LaTeX\fi\ifxetex \XeLaTeX\fi{} and KOMA-Script.
-The used fonts are \@mainfont, \@sansfont, \@monofont{} and \@mathfont.
+The used fonts are \ck@mainfont, \ck@sansfont, \ck@monofont{} and \ck@mathfont.
 \vspace{1cm}
 
 \noindent
