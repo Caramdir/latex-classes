@@ -190,6 +190,13 @@
     row sep=2em,
     text height=1.5ex,
     text depth=0.25ex}}
+\tikzset{spaced commutative diagram/.style={
+    commutative diagram,
+    column sep=3em,
+    row sep=3em}}
+\tikzset{commutative diagram arrows/.style={
+    ->,
+    font=\small}}
 \tikzset{descr/.style={fill=white,inner sep=1pt}}
 \ifxetex
     \def\underbrace#1{\@ifnextchar_{\tikz@@underbrace{#1}}{\tikz@@underbrace{#1}_{}}}
