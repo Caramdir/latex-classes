@@ -24,7 +24,7 @@
 \newcommand\isoto\similarrightarrow % isomorphisms
 
 % morphisms
-\newcommand\id[1][]{\mathrm{Id}_{#1}}   % identity map
+\newcommand\id[1][]{{\mathrm{Id}_{#1}}}   % identity map
 \DeclareMathOperator\Hom{Hom}       
 \DeclareMathOperator\Aut{Aut}       
 \DeclareMathOperator\End{End}       
@@ -71,3 +71,12 @@
 
 % category theory
 \newcommand\cat{\mathbf}
+\newcommand\catover[2]{\cat{#1}{∕}#2}   % Category #1/#2
+\def\@catover#1{\@ifnextchar[{\@@catover{#1}}{\cat{#1}}}     % Only use \catover when optional argument is present.
+\def\@@catover#1[#2]{\catover{#1}{#2}}
+\newcommand\commacat\catover            % Comma category
+
+% common categories
+\newcommand\catSet{\cat{Set}}
+\newcommand\catTop{\cat{Top}}
+\newcommand\catGroup{\cat{Grp}}
