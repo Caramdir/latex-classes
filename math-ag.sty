@@ -11,3 +11,12 @@
 \newcommand\catSchemes{\@catover{Sch}}          % category of schemes
 \newcommand\catAffine{\@catover{Aff}}           % category of affine schemes
 \newcommand\catStacks[1]{\catover{Stacks}{#1}}  % category of stacks
+
+\newcommand\ps[2][]{\mathbb P^{#2}_{#1}}        % projective space
+
+% algebraic groups
+\renewcommand\GL[2][]{\operatorname{GL}_#2\ifx#1\@empty\else(#1)\fi}
+\renewcommand\SL[2][]{\operatorname{SL}_#2\ifx#1\@empty\else(#1)\fi}
+\renewcommand\PGL[2][]{\operatorname{PGL}_#2\ifx#1\@empty\else(#1)\fi}
+
+
