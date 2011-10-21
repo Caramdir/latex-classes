@@ -77,8 +77,10 @@
 \def\@catover#1{\@ifnextchar[{\@@catover{#1}}{\cat{#1}}}     % Only use \catover when optional argument is present.
 \def\@@catover#1[#2]{\catover{#1}{#2}}
 \newcommand\commacat\catover            % Comma category
+\newcommand\oppcat[1]{#1^{\mathrm{op}}} % opposite categroy
 
 % common categories
 \newcommand\catSet{\cat{Set}}
 \newcommand\catTop{\cat{Top}}
 \newcommand\catGroup{\cat{Grp}}
+\newcommand\catGroupoids{\cat{Groupoids}}
