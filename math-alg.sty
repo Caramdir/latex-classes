@@ -1,9 +1,15 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{math-alg}[2011/11/22 Useful commands for writing texts about algebra in general]
+\ProvidesPackage{math-alg}[2011/11/26 Useful commands for writing texts about algebra in general]
 \RequirePackage{math-general}
 
 % categories
-\newcommand\catModules[1]{#1\text{-}\cat{Mod}}  % modules
+\newcommand\catModules[1]{#1\text{-}\cat{Mod}}      % modules
+\newcommand\catCoModules[1]{#1\text{-}\cat{coMod}}  % comodules
+\newcommand\catRep[1]{#1\text{-}\cat{Rep}}          % representations
 
 % groups
 \newcommand\symgroup{\mathfrak{S}_}         % symmetric group
+
+% Lie algebras
+\newcommand\liealg{\mathfrak}                   % Lie algebra
+\newcommand\liealgof[1]{\operatorname{Lie}(#1)} % Lie algebra of a group
