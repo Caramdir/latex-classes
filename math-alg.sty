@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{math-alg}[2011/11/26 Useful commands for writing texts about algebra in general]
+\ProvidesPackage{math-alg}[2011/12/04 Useful commands for writing texts about algebra in general]
 \RequirePackage{math-general}
 
 % categories
@@ -8,8 +8,11 @@
 \newcommand\catRep[1]{#1\text{-}\cat{Rep}}          % representations
 
 % groups
-\newcommand\symgroup{\mathfrak{S}_}         % symmetric group
+\newcommand\symgroup{\mathfrak{S}_}             % symmetric group
 
 % Lie algebras
 \newcommand\liealg{\mathfrak}                   % Lie algebra
 \newcommand\liealgof[1]{\operatorname{Lie}(#1)} % Lie algebra of a group
+
+% Field extensions
+\newcommand\Gal[2]{\operatorname{Gal}(#1/#2)}   % Galois group
