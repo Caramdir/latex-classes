@@ -137,6 +137,7 @@
     \setkomafont{title}{\normalfont\normalcolor\scshape\LARGE\color{sectioningcolor}}
     \setkomafont{section}{\normalfont\normalcolor\scshape\large\color{sectioningcolor}\centering}
     \setkomafont{subsection}{\normalfont\normalcolor\scshape\color{sectioningcolor}}
+    \setkomafont{sectionentry}{\normalfont\normalcolor\scshape}
 \fi
 \setkomafont{paragraph}{\normalfont\normalcolor\sffamily\bfseries}
 \setkomafont{subparagraph}{\normalfont\normalcolor\sffamily\itshape}
