@@ -222,6 +222,7 @@
 \theoremstyle{plain}
 \newtheorem{Thm}{Theorem}[chapter]
 \newtheorem{Fact}[Thm]{Fact}
+\newtheorem{Claim}[Thm]{Claim}
 \newtheorem{Prop}[Thm]{Proposition}
 \newtheorem{Cor}[Thm]{Corollary}
 \newtheorem{CorAd}[Thm]{Corollary*}
@@ -239,6 +240,7 @@
 \newtheorem{RemAd}[Thm]{Remark*}
 \newtheorem{Rems}[Thm]{Remarks}
 \newtheorem{Exercise}[Thm]{Exercise}
+\newtheorem{Q}[Thm]{Question}
 
 \declaretheorem[name=Example,sibling=Thm,qed={\lower-0.3ex\hbox{$◃$}}]{Ex}
 \declaretheorem[name=Examples,sibling=Ex,qed={\lower-0.3ex\hbox{$◃$}}]{Exs}
