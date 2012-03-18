@@ -131,13 +131,17 @@
 \KOMAoptions{numbers=enddot}
 
 \ifbw
+    \setkomafont{title}{\normalfont\normalcolor\sffamily\scshape\LARGE\color{sectioningcolor}}
     \setkomafont{section}{\normalfont\normalcolor\sffamily\scshape\Large\color{sectioningcolor}}
     \setkomafont{subsection}{\normalfont\normalcolor\sffamily\scshape\large\color{sectioningcolor}}
+    \setkomafont{sectionentry}{\normalfont\normalcolor\sffamily\scshape}
+    \setkomafont{subsubsection}{\normalfont\normalcolor\sffamily\scshape\color{sectioningcolor}}
 \else
     \setkomafont{title}{\normalfont\normalcolor\scshape\LARGE\color{sectioningcolor}}
     \setkomafont{section}{\normalfont\normalcolor\scshape\large\color{sectioningcolor}\centering}
     \setkomafont{subsection}{\normalfont\normalcolor\scshape\color{sectioningcolor}}
     \setkomafont{sectionentry}{\normalfont\normalcolor\scshape}
+    \setkomafont{subsubsection}{\normalfont\normalcolor\color{sectioningcolor}}
 \fi
 \setkomafont{paragraph}{\normalfont\normalcolor\sffamily\bfseries}
 \setkomafont{subparagraph}{\normalfont\normalcolor\sffamily\itshape}
