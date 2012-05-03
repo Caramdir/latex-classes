@@ -31,6 +31,8 @@
 \newif\ifkindledx
 \newif\ifbw
 \newif\iffinal
+\newif\ifnumbertheorems
+\numbertheoremstrue
 \IfEndWith{\jobname}{\detokenize{-kindledxlandscape}}{\kindledxlandscapetrue}{}
 \IfEndWith{\jobname}{\detokenize{-kindledxportrait}}{\kindledxportraittrue}{}
 \IfEndWith{\jobname}{\detokenize{-bw}}{\bwtrue}{}
@@ -45,6 +47,9 @@
 }
 \DeclareOption{final}{
     \finaltrue
+}
+\DeclareOption{no-theorem-numbers}{
+    \numbertheoremsfalse
 }
 
 \ProcessOptions\relax
@@ -202,30 +207,63 @@
 \newunicodechar{ }{ } % narrow no-break space
 \RequirePackage[colorlinks=false,unicode=true]{hyperref}
 \theoremstyle{plain}
+\ifnumbertheorems
 \newtheorem{Thm}{Theorem}
-\newtheorem{Fact}[Thm]{Fact}
-\newtheorem{Claim}[Thm]{Claim}
-\newtheorem{Prop}[Thm]{Proposition}
-\newtheorem{Cor}[Thm]{Corollary}
-\newtheorem{CorAd}[Thm]{Corollary*}
-\newtheorem{Lem}[Thm]{Lemma}
-\newtheorem{LemAd}[Thm]{Lemma*}
-\newtheorem{Alg}[Thm]{Algorithm}
-\newtheorem{DefProp}[Thm]{Definition and Proposition}
+\else
+    \newtheorem*{Thm}{Theorem}
+\fi
+\ifnumbertheorems
+    \newtheorem{Fact}[Thm]{Fact}
+    \newtheorem{Claim}[Thm]{Claim}
+    \newtheorem{Prop}[Thm]{Proposition}
+    \newtheorem{Cor}[Thm]{Corollary}
+    \newtheorem{CorAd}[Thm]{Corollary*}
+    \newtheorem{Lem}[Thm]{Lemma}
+    \newtheorem{LemAd}[Thm]{Lemma*}
+    \newtheorem{Alg}[Thm]{Algorithm}
+    \newtheorem{DefProp}[Thm]{Definition and Proposition}
+\else
+    \newtheorem*{Fact}{Fact}
+    \newtheorem*{Claim}{Claim}
+    \newtheorem*{Prop}{Proposition}
+    \newtheorem*{Cor}{Corollary}
+    \newtheorem*{CorAd}{Corollary*}
+    \newtheorem*{Lem}{Lemma}
+    \newtheorem*{LemAd}{Lemma*}
+    \newtheorem*{Alg}{Algorithm}
+    \newtheorem*{DefProp}{Definition and Proposition}
+\fi
 
 \theoremstyle{definition}
-\newtheorem{Def}[Thm]{Definition}
+\ifnumbertheorems
+    \newtheorem{Def}[Thm]{Definition}
+\else
+    \newtheorem*{Def}{Definition}
+\fi
 \newtheorem*{Notation}{Notation}
 
 \theoremstyle{remark}
-\newtheorem{Rem}[Thm]{Remark}
-\newtheorem{RemAd}[Thm]{Remark*}
-\newtheorem{Rems}[Thm]{Remarks}
-\newtheorem{Exercise}[Thm]{Exercise}
-\newtheorem{Q}[Thm]{Question}
+\ifnumbertheorems
+    \newtheorem{Rem}[Thm]{Remark}
+    \newtheorem{RemAd}[Thm]{Remark*}
+    \newtheorem{Rems}[Thm]{Remarks}
+    \newtheorem{Exercise}[Thm]{Exercise}
+    \newtheorem{Q}[Thm]{Question}
+\else
+    \newtheorem*{Rem}{Remark}
+    \newtheorem*{RemAd}{Remark*}
+    \newtheorem*{Rems}{Remarks}
+    \newtheorem*{Exercise}{Exercise}
+    \newtheorem*{Q}{Question}
+\fi
 
-\declaretheorem[name=Example,sibling=Thm,qed={\lower-0.3ex\hbox{$◃$}}]{Ex}
-\declaretheorem[name=Examples,sibling=Ex,qed={\lower-0.3ex\hbox{$◃$}}]{Exs}
+\ifnumbertheorems
+    \declaretheorem[name=Example,sibling=Thm,qed={\lower-0.3ex\hbox{$◃$}}]{Ex}
+    \declaretheorem[name=Examples,sibling=Ex,qed={\lower-0.3ex\hbox{$◃$}}]{Exs}
+\else
+    \declaretheorem[name=Example,numbered=no,qed={\lower-0.3ex\hbox{$◃$}}]{Ex}
+    \declaretheorem[name=Examples,numbered=no,qed={\lower-0.3ex\hbox{$◃$}}]{Exs}
+\fi
 \let\ck@paperref\@empty
 \def\paperref#1{%
     \def\ck@paperref{#1}%
