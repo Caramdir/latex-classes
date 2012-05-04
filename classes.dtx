@@ -553,6 +553,11 @@ version 2005/12/01 or later.
 %    \end{macrocode}
 %
 % \section{The title page}
+%
+%    \begin{macrocode}
+\let\@version\@empty%
+\newcommand{\version}[1]{\gdef\@version{#1}}%
+%    \end{macrocode}
 %</common>
 % \subsection{Lecture notes}
 %<*lecture-notes>
@@ -566,8 +571,6 @@ version 2005/12/01 or later.
 \newcommand{\courseinfo}[1]{\gdef\@courseinfo{#1}}%
 \let\@typedby\@empty%
 \newcommand{\typedby}[1]{\gdef\@typedby{#1}}%
-\let\@version\@empty%
-\newcommand{\version}[1]{\gdef\@version{#1}}%
 \let\@disclaimer\@empty%
 \newcommand{\disclaimer}[1]{\gdef\@disclaimer{#1}}%
 %    \end{macrocode}
@@ -717,7 +720,10 @@ USA.
         \@author
       \end{tabular}\par
     }%
-    {\scshape \@date \par}%
+    {\scshape \@date%
+      \ifx\@version\@empty\else{} --- v\@version\fi%
+      \par
+    }%
     \vskip \z@ \@plus 1em
     {\Large \@publishers \par}
     \ifx\@dedication\@empty \else

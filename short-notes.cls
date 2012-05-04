@@ -264,6 +264,8 @@
     \declaretheorem[name=Example,numbered=no,qed={\lower-0.3ex\hbox{$◃$}}]{Ex}
     \declaretheorem[name=Examples,numbered=no,qed={\lower-0.3ex\hbox{$◃$}}]{Exs}
 \fi
+\let\@version\@empty%
+\newcommand{\version}[1]{\gdef\@version{#1}}%
 \AtBeginDocument{%
 \hypersetup{
 pdfinfo={
@@ -302,7 +304,10 @@ Author={\@author}
         \@author
       \end{tabular}\par
     }%
-    {\scshape \@date \par}%
+    {\scshape \@date%
+      \ifx\@version\@empty\else{} --- v\@version\fi%
+      \par
+    }%
     \vskip \z@ \@plus 1em
     {\Large \@publishers \par}
     \ifx\@dedication\@empty \else

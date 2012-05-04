@@ -282,6 +282,8 @@
     \declaretheorem[name=Example,numbered=no,qed={\lower-0.3ex\hbox{$◃$}}]{Ex}
     \declaretheorem[name=Examples,numbered=no,qed={\lower-0.3ex\hbox{$◃$}}]{Exs}
 \fi
+\let\@version\@empty%
+\newcommand{\version}[1]{\gdef\@version{#1}}%
 \let\@author\@empty%
 \let\@course\@empty%
 \newcommand{\course}[1]{\gdef\@course{#1}}%
@@ -289,8 +291,6 @@
 \newcommand{\courseinfo}[1]{\gdef\@courseinfo{#1}}%
 \let\@typedby\@empty%
 \newcommand{\typedby}[1]{\gdef\@typedby{#1}}%
-\let\@version\@empty%
-\newcommand{\version}[1]{\gdef\@version{#1}}%
 \let\@disclaimer\@empty%
 \newcommand{\disclaimer}[1]{\gdef\@disclaimer{#1}}%
 \AtBeginDocument{%
