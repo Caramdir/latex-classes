@@ -26,6 +26,7 @@ version 2005/12/01 or later.
 \endpreamble
 \generate{\file{short-notes.cls} {\from{classes.dtx}{short-notes,common}}}
 \generate{\file{lecture-notes.cls} {\from{classes.dtx}{lecture-notes,common}}}
+\generate{\file{short-lecture-notes.cls} {\from{classes.dtx}{short-lecture-notes,common}}}
 \generate{\file{paper-notes.cls} {\from{classes.dtx}{paper-notes,common}}}
 %</install>
 %<install>\endbatchfile
@@ -43,10 +44,12 @@ version 2005/12/01 or later.
 %<common>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<short-notes>\ProvidesClass{short-notes}
 %<lecture-notes>\ProvidesClass{lecture-notes}
+%<short-lecture-notes>\ProvidesClass{short-lecture-notes}
 %<paper-notes>\ProvidesClass{paper-notes}
 %<common>   [2011/07/22 v0.2
 %<short-notes>     A class for short notes
-%<lecture-notes>   A class for lecture notes
+%<lecture-notes>   A class for lecture notes (with chapters)
+%<short-lecture-notes>   A class for short lecture notes (without chapters)
 %<paper-notes>     A class for notes on articles
 %<common>   ]
 %
@@ -560,7 +563,7 @@ version 2005/12/01 or later.
 %    \end{macrocode}
 %</common>
 % \subsection{Lecture notes}
-%<*lecture-notes>
+%<*lecture-notes|short-lecture-notes>
 %
 % Some commands to set and store various metadata
 %    \begin{macrocode}
@@ -586,8 +589,10 @@ version 2005/12/01 or later.
 	}%
 }
 %    \end{macrocode}
-% 
+%</lecture-notes|short-lecture-notes>
+%
 % The actual title page.
+%<*lecture-notes>
 %    \begin{macrocode}
 \newcommand\maketitlepage{%
 \begin{titlepage}
@@ -648,8 +653,56 @@ USA.
 \end{titlepage}
 \cleardoublepage
 }
-%    \end{macrocode}
 %</lecture-notes>
+%<*short-lecture-notes>
+\renewcommand*{\@maketitle}{%
+  \clearpage
+  \let\footnote\thanks
+  \ifx\@extratitle\@empty \else
+    \noindent\@extratitle \next@tpage \if@twoside \null\next@tpage \fi
+  \fi
+  \setparsizes{\z@}{\z@}{\z@\@plus 1fil}\par@updaterelative
+  \ifx\@titlehead\@empty \else
+    \begin{minipage}[t]{\textwidth}
+      \@titlehead
+    \end{minipage}\par
+  \fi
+  \null
+  \vskip 2em%
+  \begin{center}%
+    \ifx\@subject\@empty \else
+      {\subject@font \@subject \par}
+      \vskip 1.5em
+    \fi
+    {\titlefont \@title \par}%
+    \vskip .5em
+    {\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
+    \vskip 1em
+    {\ifx\@course\@empty \else%
+      \normalcolor%
+      based on the course\\
+      \emph{\@course}%
+      \ifx\@courseinfo\@empty\else\\\@courseinfo\fi\par%
+    \fi%
+    \ifx\@typedby\@empty{\ifx\@author\@empty\else\@author\\[1cm]\fi}\else
+      written by \@typedby\\
+    \fi\par}%
+    {\scshape \@date%
+      \ifx\@version\@empty\else{} --- v\@version\fi%
+      \par
+    }%
+    \vskip \z@ \@plus 1em
+    {\Large \@publishers \par}
+    \ifx\@dedication\@empty \else
+      \vskip 2em
+      {\Large \@dedication \par}
+    \fi
+  \end{center}%
+  \par
+  \vskip 1em
+}%
+%    \end{macrocode}
+%</short-lecture-notes>
 %
 % \subsection{Other classes}
 %
@@ -664,7 +717,7 @@ USA.
 %    \end{macrocode}
 %</paper-notes>
 %
-%<*!lecture-notes>
+%<*!lecture-notes&!short-lecture-notes>
 %    \begin{macrocode}
 \AtBeginDocument{%
 	\hypersetup{
@@ -735,7 +788,7 @@ USA.
   \vskip 1em
 }%
 %    \end{macrocode}
-%</!lecture-notes>
+%</!lecture-notes&!short-lecture-notes>
 %<*common>
 %
 %</common>

@@ -1,10 +1,10 @@
 %%
-%% This is file `lecture-notes.cls',
+%% This is file `short-lecture-notes.cls',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% classes.dtx  (with options: `lecture-notes,common')
+%% classes.dtx  (with options: `short-lecture-notes,common')
 %% Copyright (C) 2011 by Clemens Koppensteiner
 %% -------------------------------------------
 %% 
@@ -19,11 +19,11 @@
 %% and version 1.3 or later is part of all distributions of LaTeX
 %% version 2005/12/01 or later.
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
-\ProvidesClass{lecture-notes}
+\ProvidesClass{short-lecture-notes}
    [2011/07/22 v0.2
-   A class for lecture notes (with chapters)
+   A class for short lecture notes (without chapters)
    ]
-\LoadClassWithOptions{scrbook}
+\LoadClassWithOptions{scrartcl}
 \RequirePackage{xstring}
 \RequirePackage{iftex}
 \newif\ifkindledxlandscape
@@ -62,8 +62,6 @@
     footinclude=false,
     headinclude=false,
     pagesize,
-    twoside,
-    open=right,
 }
 \recalctypearea
 \ifkindledxlandscape
@@ -135,49 +133,33 @@
 \else
     \colorlet{sectioningcolor}{cyan!15!blue}
 \fi
+\KOMAoptions{numbers=enddot}
+
 \ifbw
-    \setkomafont{chapter}{\normalfont\normalcolor\sffamily\scshape\huge\color{sectioningcolor}}
+    \setkomafont{title}{\normalfont\normalcolor\sffamily\scshape\LARGE\color{sectioningcolor}}
     \setkomafont{section}{\normalfont\normalcolor\sffamily\scshape\Large\color{sectioningcolor}}
     \setkomafont{subsection}{\normalfont\normalcolor\sffamily\scshape\large\color{sectioningcolor}}
+    \setkomafont{sectionentry}{\normalfont\normalcolor\sffamily\scshape}
+    \setkomafont{subsubsection}{\normalfont\normalcolor\sffamily\scshape\color{sectioningcolor}}
 \else
-    \setkomafont{chapter}{\normalfont\normalcolor\sffamily\huge\color{sectioningcolor}}
-    \setkomafont{section}{\normalfont\normalcolor\sffamily\Large\color{sectioningcolor}}
-    \setkomafont{subsection}{\normalfont\normalcolor\sffamily\large\color{sectioningcolor}}
+    \setkomafont{title}{\normalfont\normalcolor\scshape\LARGE\color{sectioningcolor}}
+    \setkomafont{section}{\normalfont\normalcolor\scshape\large\color{sectioningcolor}\centering}
+    \setkomafont{subsection}{\normalfont\normalcolor\scshape\color{sectioningcolor}}
+    \setkomafont{sectionentry}{\normalfont\normalcolor\scshape}
+    \setkomafont{subsubsection}{\normalfont\normalcolor\color{sectioningcolor}}
 \fi
 \setkomafont{paragraph}{\normalfont\normalcolor\sffamily\bfseries}
 \setkomafont{subparagraph}{\normalfont\normalcolor\sffamily\itshape}
 \pagestyle{scrheadings}
-
-\ifkindledx
-    \AtBeginDocument{%
-        \cfoot{}%
-        \chead{\normalfont\scshape\headmark}%
-        \ohead{\normalfont\pagemark}%
-        \renewcommand*\partpagestyle{empty}%
-        \renewcommand*\chapterpagestyle{empty}%
-        \renewcommand*\indexpagestyle{empty}%
-    }
-\else
-    \AtBeginDocument{%
-        \lehead{\normalfont\scshape\headmark}%
-        \setheadsepline{0.4pt}[\color{black!30}]%
-    }
-    \appto\backmatter{%
-\rohead{\normalfont\scshape\headmark}%
-    }
-\fi
-\RequirePackage{makeidx}
-\RequirePackage{index}
-\makeindex
-\appto\theindex{%
-\markboth{\indexname}{\indexname}%
-\addcontentsline{toc}{chapter}{\indexname}%
+\AtBeginDocument{
+    \clearscrheadfoot
+    \let\@@title\@title
+    \ihead{\normalfont\scshape\color{gray}\@@title}
+    \chead{}
+    \ohead{\pagemark}
+    \cfoot[\pagemark]{}
+    \setheadsepline{0.5pt}
 }
-
-\RequirePackage[noprefix,refpage,intoc]{nomencl}
-\renewcommand\nomname{List of Notation}
-\renewcommand{\pagedeclaration}[1]{\hfill #1}
-\makenomenclature
 \RequirePackage{tikz}
 \usetikzlibrary{
     positioning,
@@ -226,7 +208,7 @@
 \RequirePackage[colorlinks=false,unicode=true]{hyperref}
 \theoremstyle{plain}
 \ifnumbertheorems
-\newtheorem{Thm}{Theorem}[chapter]
+\newtheorem{Thm}{Theorem}
 \else
     \newtheorem*{Thm}{Theorem}
 \fi
@@ -301,65 +283,52 @@ Author={\ifx\@author\@empty\ifx\@typedby\@empty\else\@typedby\fi\else\@author\fi
 }
 }%
 }
-\newcommand\maketitlepage{%
-\begin{titlepage}
-    \sffamily
-    \ifkindledx\relax\else\vspace*{3cm}\fi
-
-    \noindent
-    \huge\color{sectioningcolor}
-    \@title\\[0.6cm]
-    \ifx\@course\@empty \else
-      \normalcolor\large
+\renewcommand*{\@maketitle}{%
+  \clearpage
+  \let\footnote\thanks
+  \ifx\@extratitle\@empty \else
+    \noindent\@extratitle \next@tpage \if@twoside \null\next@tpage \fi
+  \fi
+  \setparsizes{\z@}{\z@}{\z@\@plus 1fil}\par@updaterelative
+  \ifx\@titlehead\@empty \else
+    \begin{minipage}[t]{\textwidth}
+      \@titlehead
+    \end{minipage}\par
+  \fi
+  \null
+  \vskip 2em%
+  \begin{center}%
+    \ifx\@subject\@empty \else
+      {\subject@font \@subject \par}
+      \vskip 1.5em
+    \fi
+    {\titlefont \@title \par}%
+    \vskip .5em
+    {\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
+    \vskip 1em
+    {\ifx\@course\@empty \else%
+      \normalcolor%
       based on the course\\
       \emph{\@course}%
-      \ifx\@courseinfo\@empty\else\\\@courseinfo\fi\\[1cm]
-    \fi
-    \Large
+      \ifx\@courseinfo\@empty\else\\\@courseinfo\fi\par%
+    \fi%
     \ifx\@typedby\@empty{\ifx\@author\@empty\else\@author\\[1cm]\fi}\else
-      written by \@typedby\\[1cm]
+      written by \@typedby\\
+    \fi\par}%
+    {\scshape \@date%
+      \ifx\@version\@empty\else{} --- v\@version\fi%
+      \par
+    }%
+    \vskip \z@ \@plus 1em
+    {\Large \@publishers \par}
+    \ifx\@dedication\@empty \else
+      \vskip 2em
+      {\Large \@dedication \par}
     \fi
-    \normalcolor
-    \large
-    \ifx\@version\@empty\else
-      Version \@version\\
-    \fi
-    \ifx\@date\today\else\@date\fi
-
-\clearpage\normalfont\normalsize\normalcolor
-\thispagestyle{plain}
-\noindent
-\ifx\@disclaimer\@empty\else\@disclaimer\\[1cm]\fi
-The current version of this text as well as the \LaTeX{} source code can be found
-at \url{http://caramdir.at/math}.
-
-\ifkindledxlandscape%
-\noindent This version of the document has been specially formatted to fit on a Kindle DX (second generation) in landscape rotation.
-For optimal viewing select \enquote{actual size} from the text menu.
-\fi
-\ifkindledxportrait%
-\noindent This version of the document has been specially formatted to fit on a Kindle DX (second generation).
-\fi
-\vfill
-
-\noindent
-This document was typeset with
-\ifluatex Lua\LaTeX\fi\ifxetex \XeLaTeX\fi{} and KOMA-Script.
-The used fonts are \ck@mainfont, \ck@sansfont, \ck@monofont{} and \ck@mathfont.
-\vspace{1cm}
-
-\noindent
-This work is licensed under the Creative Commons Attribution-Share Alike 3.0 Austria License.
-To view a copy of this license, visit \url{http://creativecommons.org/licenses/by-sa/3.0/at/}
-or send a letter to\\
-Creative Commons\\
-171 Second Street, Suite 300\\
-San Francisco\\
-California, 94105\\
-USA.
-\end{titlepage}
-\cleardoublepage
-}
+  \end{center}%
+  \par
+  \vskip 1em
+}%
 \endinput
 %%
-%% End of file `lecture-notes.cls'.
+%% End of file `short-lecture-notes.cls'.
