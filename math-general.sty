@@ -17,6 +17,10 @@
 \DeclareMathOperator\trace{tr}      % trace
 
 \newcommand\abs[1]{\left|#1\right|} % absolute value
+\AtBeginDocument{%
+    \renewcommand\Re{\mathfrak{Re}}%    % real part
+    \renewcommand\Im{\mathfrak{Im}}%    % imaginary part
+}
 
 \newcommand\res[2]{\mathchoice{\left.#1\right|_{#2}}{#1|_{#2}}{#1|_{#2}}{#1|_{#2}}}
 
