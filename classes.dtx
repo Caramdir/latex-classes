@@ -97,6 +97,7 @@ version 2005/12/01 or later.
 \newif\iffinal
 \newif\ifnumbertheorems
 \numbertheoremstrue
+\newif\ifbiblatexalpha
 %    \end{macrocode}
 %
 % Try to set some options based on the name of the input file.
@@ -122,6 +123,10 @@ version 2005/12/01 or later.
 }
 \DeclareOption{no-theorem-numbers}{
     \numbertheoremsfalse
+}
+
+\DeclareOption{biblatex-alpha}{
+    \biblatexalphatrue
 }
 
 \ProcessOptions\relax
@@ -230,7 +235,11 @@ version 2005/12/01 or later.
 %
 % Bibliographies
 %    \begin{macrocode}
-\RequirePackage[backend=biber]{biblatex}
+\RequirePackage[backend=biber,
+\ifbiblatexalpha
+    style=alphabetic
+\fi
+    ]{biblatex}
 %    \end{macrocode}
 %
 % Wrappers around \eTeX\ primitives.

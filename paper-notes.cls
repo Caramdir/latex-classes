@@ -33,6 +33,7 @@
 \newif\iffinal
 \newif\ifnumbertheorems
 \numbertheoremstrue
+\newif\ifbiblatexalpha
 \IfEndWith{\jobname}{\detokenize{-kindledxlandscape}}{\kindledxlandscapetrue}{}
 \IfEndWith{\jobname}{\detokenize{-kindledxportrait}}{\kindledxportraittrue}{}
 \IfEndWith{\jobname}{\detokenize{-bw}}{\bwtrue}{}
@@ -50,6 +51,10 @@
 }
 \DeclareOption{no-theorem-numbers}{
     \numbertheoremsfalse
+}
+
+\DeclareOption{biblatex-alpha}{
+    \biblatexalphatrue
 }
 
 \ProcessOptions\relax
@@ -91,7 +96,11 @@
 \RequirePackage{engord}
 \RequirePackage{needspace}
 \RequirePackage{dtklogos}
-\RequirePackage[backend=biber]{biblatex}
+\RequirePackage[backend=biber,
+\ifbiblatexalpha
+    style=alphabetic
+\fi
+    ]{biblatex}
 \RequirePackage{etoolbox}
 \ifluatex
     \RequirePackage{lualatex-math}
