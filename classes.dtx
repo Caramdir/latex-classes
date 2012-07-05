@@ -24,10 +24,11 @@ The latest version of this license is in:
 and version 1.3 or later is part of all distributions of LaTeX
 version 2005/12/01 or later.
 \endpreamble
-\generate{\file{short-notes.cls} {\from{classes.dtx}{short-notes,common}}}
-\generate{\file{lecture-notes.cls} {\from{classes.dtx}{lecture-notes,common}}}
-\generate{\file{short-lecture-notes.cls} {\from{classes.dtx}{short-lecture-notes,common}}}
-\generate{\file{paper-notes.cls} {\from{classes.dtx}{paper-notes,common}}}
+\generate{\file{long-notes.cls} {\from{classes.dtx}{long-notes,common,long-common}}}
+\generate{\file{short-notes.cls} {\from{classes.dtx}{short-notes,common,short-common}}}
+\generate{\file{lecture-notes.cls} {\from{classes.dtx}{lecture-notes,long-common,common}}}
+\generate{\file{short-lecture-notes.cls} {\from{classes.dtx}{short-lecture-notes,common,short-common}}}
+\generate{\file{paper-notes.cls} {\from{classes.dtx}{paper-notes,common,short-common}}}
 %</install>
 %<install>\endbatchfile
 %<*internal>
@@ -43,10 +44,12 @@ version 2005/12/01 or later.
 %
 %<common>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<short-notes>\ProvidesClass{short-notes}
+%<long-notes>\ProvidesClass{long-notes}
 %<lecture-notes>\ProvidesClass{lecture-notes}
 %<short-lecture-notes>\ProvidesClass{short-lecture-notes}
 %<paper-notes>\ProvidesClass{paper-notes}
 %<common>   [2011/07/22 v0.2
+%<long-notes>      A class for longer notes
 %<short-notes>     A class for short notes
 %<lecture-notes>   A class for lecture notes (with chapters)
 %<short-lecture-notes>   A class for short lecture notes (without chapters)
@@ -75,8 +78,8 @@ version 2005/12/01 or later.
 % \section{Load a base class}
 %
 %    \begin{macrocode}
-%<lecture-notes>\LoadClassWithOptions{scrbook}
-%<!lecture-notes>\LoadClassWithOptions{scrartcl}
+%<long-common>\LoadClassWithOptions{scrbook}
+%<short-common>\LoadClassWithOptions{scrartcl}
 %    \end{macrocode}
 %
 %<*common>
@@ -150,12 +153,12 @@ version 2005/12/01 or later.
 %    \end{macrocode}
 %</common>
 % \\ For the lecture notes class we want chapter to open on the right page only.\\
-%<*lecture-notes>
+%<*long-common>
 %    \begin{macrocode}
     twoside,
     open=right,
 %    \end{macrocode}
-%</lecture-notes>
+%</long-common>
 %<*common>
 %    \begin{macrocode}
 }
@@ -305,8 +308,8 @@ version 2005/12/01 or later.
 %
 %</common>
 %
-% \subsection{Lecture notes}
-%<*lecture-notes>
+% \subsection{Longer notes}
+%<*long-common>
 %    \begin{macrocode}
 \ifbw
     \setkomafont{chapter}{\normalfont\normalcolor\sffamily\scshape\huge\color{sectioningcolor}}
@@ -318,10 +321,10 @@ version 2005/12/01 or later.
     \setkomafont{subsection}{\normalfont\normalcolor\sffamily\large\color{sectioningcolor}}
 \fi
 %    \end{macrocode}
-%</lecture-notes>
+%</long-common>
 %
-% \subsection{Other classes}
-%<*!lecture-notes>
+% \subsection{Shorter notes}
+%<*short-common>
 %    \begin{macrocode}
 \KOMAoptions{numbers=enddot}
 
@@ -339,7 +342,7 @@ version 2005/12/01 or later.
     \setkomafont{subsubsection}{\normalfont\normalcolor\color{sectioningcolor}}
 \fi
 %    \end{macrocode}
-%</!lecture-notes>
+%</short-common>
 %
 % \subsection{Common options}
 %<*common>
@@ -355,8 +358,8 @@ version 2005/12/01 or later.
 %    \end{macrocode}
 %
 %</common>
-% \subsection{Lecture notes}
-%<*lecture-notes>
+% \subsection{Long notes}
+%<*long-common>
 %    \begin{macrocode}
 
 \ifkindledx
@@ -378,10 +381,10 @@ version 2005/12/01 or later.
     }
 \fi
 %    \end{macrocode}
-%</lecture-notes>
+%</long-common>
 %
 % \subsection{Other classes}
-%<*!lecture-notes>
+%<*short-common>
 %    \begin{macrocode}
 \AtBeginDocument{
     \clearscrheadfoot
@@ -393,15 +396,15 @@ version 2005/12/01 or later.
     \setheadsepline{0.5pt}
 }
 %    \end{macrocode}
-%</!lecture-notes>
+%</short-common>
 %
 %<*common>
 %
 % \section{Index and List of Notation}
 % 
-% These are only needed in the lecture notes class.\\
+% These are only needed in the long notes classes.\\
 %</common>
-%<*lecture-notes>
+%<*long-common>
 %    \begin{macrocode}
 \RequirePackage{makeidx}
 \RequirePackage{index}
@@ -416,7 +419,7 @@ version 2005/12/01 or later.
 \renewcommand{\pagedeclaration}[1]{\hfill #1}
 \makenomenclature
 %    \end{macrocode}
-%</lecture-notes>
+%</long-common>
 %<*common>
 %
 % \section{Various things}
@@ -493,7 +496,7 @@ version 2005/12/01 or later.
 % 
 % \section{Set up theorem-like environments}
 %
-% For the lecture notes class, the theorem counter should be reset every chapter.
+% For the long notes classes, the theorem counter should be reset every chapter.
 % For the shorter notes, it shouldn't be reset.
 %
 %    \begin{macrocode}
@@ -502,8 +505,8 @@ version 2005/12/01 or later.
 %</common>
 %    \begin{macrocode}
 \ifnumbertheorems
-%<lecture-notes>\newtheorem{Thm}{Theorem}[chapter]
-%<!lecture-notes>\newtheorem{Thm}{Theorem}
+%<long-common>\newtheorem{Thm}{Theorem}[chapter]
+%<short-common>\newtheorem{Thm}{Theorem}
 \else
     \newtheorem*{Thm}{Theorem}
 \fi
@@ -571,8 +574,8 @@ version 2005/12/01 or later.
 \newcommand{\version}[1]{\gdef\@version{#1}}%
 %    \end{macrocode}
 %</common>
-% \subsection{Lecture notes}
-%<*lecture-notes|short-lecture-notes>
+% \subsection{Lecture notes and long notes}
+%<*long-common|short-lecture-notes>
 %
 % Some commands to set and store various metadata
 %    \begin{macrocode}
@@ -598,10 +601,10 @@ version 2005/12/01 or later.
 	}%
 }
 %    \end{macrocode}
-%</lecture-notes|short-lecture-notes>
+%</long-common|short-lecture-notes>
 %
 % The actual title page.
-%<*lecture-notes>
+%<*long-common>
 %    \begin{macrocode}
 \newcommand\maketitlepage{%
 \begin{titlepage}
@@ -662,7 +665,7 @@ USA.
 \end{titlepage}
 \cleardoublepage
 }
-%</lecture-notes>
+%</long-common>
 %<*short-lecture-notes>
 \renewcommand*{\@maketitle}{%
   \clearpage
@@ -726,7 +729,7 @@ USA.
 %    \end{macrocode}
 %</paper-notes>
 %
-%<*!lecture-notes&!short-lecture-notes>
+%<*!long-common&!short-lecture-notes>
 %    \begin{macrocode}
 \AtBeginDocument{%
 	\hypersetup{
@@ -797,7 +800,7 @@ USA.
   \vskip 1em
 }%
 %    \end{macrocode}
-%</!lecture-notes&!short-lecture-notes>
+%</!long-common&!short-lecture-notes>
 %<*common>
 %
 %</common>

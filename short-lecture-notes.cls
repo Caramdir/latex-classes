@@ -4,7 +4,7 @@
 %%
 %% The original source files were:
 %%
-%% classes.dtx  (with options: `short-lecture-notes,common')
+%% classes.dtx  (with options: `short-lecture-notes,common,short-common')
 %% Copyright (C) 2011 by Clemens Koppensteiner
 %% -------------------------------------------
 %% 
