@@ -453,22 +453,6 @@ version 2005/12/01 or later.
 \tikzset{descr/.style={fill=white,inner sep=1pt}}
 %    \end{macrocode}
 % 
-% \subsection{Workaround for the \texorpdfstring{\XeTeX}{XeTeX} underbrace bug}
-%
-% See \href{https://github.com/wspr/unicode-math/issues/169}{the bug report}.
-%    \begin{macrocode}
-\ifxetex
-    \def\underbrace#1{\@ifnextchar_{\tikz@@underbrace{#1}}{\tikz@@underbrace{#1}_{}}}
-    \def\tikz@@underbrace#1_#2{%
-        \tikz[baseline=(a.base)] {
-            \node[inner xsep=0,inner ysep=1pt] (a) {\(#1\)};
-            \draw[thick,decorate,decoration={brace,amplitude=5pt}] (a.south east) -- 
-                node[below,inner sep=7pt] {\(\scriptstyle #2\)} (a.south west);
-        }%
-    }
-\fi
-%    \end{macrocode}
-%
 % \subsection{Margin notes}
 %    \begin{macrocode}
 \ifkindledxportrait
