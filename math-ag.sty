@@ -13,9 +13,9 @@
 \newcommand\catAffine{\@catover{Aff}}           % category of affine schemes
 \newcommand\catStacks[1]{\catover{Stacks}{#1}}  % category of stacks
 \newcommand\catSheaves[1]{\cat{Sh}(#1)}         % category of sheaves
-\newcommand\catPresheaves[1]{\cat{PSh}(#1)}     % category of presheaves
+\newcommand\catPresheaves[1]{\cat{PreSh}(#1)}     % category of presheaves
 \newcommand\catAbSheaves[1]{\cat{Ab}(#1)}       % category of Abelian sheaves
-\newcommand\catAbPresheaves[1]{\cat{PAb}(#1)}   % category of Abelian presheaves
+\newcommand\catAbPresheaves[1]{\cat{PreAb}(#1)}   % category of Abelian presheaves
 \newcommand\catCoh[2][]{\cat{Coh}^{#1}(#2)}     % category of coherent sheaves
 \newcommand\catQCoh[2][]{\cat{QCoh}^{#1}(#2)}   % category of quasicoherent sheaves
 \newcommand\catPerf[1]{\cat{Perf}(#1)}          % category of perfect sheaves
@@ -40,3 +40,6 @@
 % perverse sheaves
 \newcommand\perv[1][p]{{}^{#1}\mkern-1mu}
 \newcommand\singsupp{\operatorname{singsupp}}   % singular support of a sheaf
+
+% Grothendieck topologies
+\newcommand\coverings[1]{\operatorname{Cov}(#1)}% coverings
