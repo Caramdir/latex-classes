@@ -203,10 +203,10 @@
 \newcommand\sidepicture[2][]{\marginpar{#2\\[0.5em]{\footnotesize\itshape #1}}}
 \newcommand\reference[1]{\remark{\textit{Reference:} \normalfont #1}}
 \def\ck@todooptions{}
-\def\todooptions#1{\def\ck@todoptions{#1}}
+\def\todooptions#1{\def\ck@todooptions{#1}}
 \let\oldtodo\todo
 \def\todo{\@ifnextchar[{\ck@todo}{\ck@todo[]}}
-\def\ck@todo[{\expandafter\oldtodo\expandafter[\ck@todooptions}
+\def\ck@todo[{\expandafter\oldtodo\expandafter[\ck@todooptions,}
 \RequirePackage{newunicodechar}
 \newunicodechar{ }{ } % no-break space
 \newunicodechar{ }{ } % narrow no-break space

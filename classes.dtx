@@ -469,10 +469,10 @@ version 2005/12/01 or later.
 % Have common options for the \cs{todo} command.
 %    \begin{macrocode}
 \def\ck@todooptions{}
-\def\todooptions#1{\def\ck@todoptions{#1}}
+\def\todooptions#1{\def\ck@todooptions{#1}}
 \let\oldtodo\todo
 \def\todo{\@ifnextchar[{\ck@todo}{\ck@todo[]}}
-\def\ck@todo[{\expandafter\oldtodo\expandafter[\ck@todooptions}
+\def\ck@todo[{\expandafter\oldtodo\expandafter[\ck@todooptions,}
 %    \end{macrocode}
 %
 % \subsection{Remap some characters}
