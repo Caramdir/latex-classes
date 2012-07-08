@@ -2,9 +2,12 @@
 \ProvidesPackage{math-ag}[2011/11/26 Useful commands for writing texts about algebraic geometry]
 \RequirePackage{math-ca}
 
+% sheaves
 \renewcommand\O{\sheaf O}
 \newcommand\sheafHom{\sheaf{Hom}}
 \let\shHom\sheafHom                             % depreciated
+\newcommand\sheafify[1]{#1^a}                   % sheafification
+
 
 \newcommand\sheafcat{\mathbfscr}
 \newcommand\stack\sheafcat
