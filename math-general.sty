@@ -25,6 +25,8 @@
 
 \newcommand\res[2]{\mathchoice{\left.#1\right|_{#2}}{#1|_{#2}}{#1|_{#2}}{#1|_{#2}}}
 
+\def\cotimes{\amalg}
+
 % arrows
 \newcommand\onto\twoheadrightarrow  % surjections
 \newcommand\isoto\similarrightarrow % isomorphisms
@@ -89,7 +91,8 @@
 \newcommand\oppcat[1]{#1^{\mathrm{op}}} % opposite category
 \newcommand\catopp[1]{\oppcat{\cat #1}} % opposite category with automatic formatting
 \DeclareMathOperator\colim{colim}       % colimit
-\newcommand\equalizer[2]{\operatorname{Eq}(#1,#2)}  % equalizer
+\newcommand\equalizer[2]{\operatorname{Eq}(#1,#2)}      % equalizer
+\newcommand\coequalizer[2]{\operatorname{Coeq}(#1,#2)}  % equalizer
 
 % common categories
 \newcommand\catSet{\cat{Set}}
