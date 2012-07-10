@@ -90,9 +90,12 @@
 \newcommand\commacat\catover            % Comma category
 \newcommand\oppcat[1]{#1^{\mathrm{op}}} % opposite category
 \newcommand\catopp[1]{\oppcat{\cat #1}} % opposite category with automatic formatting
+
 \DeclareMathOperator\colim{colim}       % colimit
 \newcommand\equalizer[2]{\operatorname{Eq}(#1,#2)}      % equalizer
 \newcommand\coequalizer[2]{\operatorname{Coeq}(#1,#2)}  % equalizer
+\newcommand\leftadjointto{\dashv}
+\newcommand\rightadjointto{\vdash}
 
 % common categories
 \newcommand\catSet{\cat{Set}}
@@ -104,6 +107,8 @@
 \newcommand\catVect[1][]{\cat{Vect}_{#1}}
 \newcommand\catGroupoids{\cat{Groupoids}}
 \newcommand\catOpenSubsets[1]{\cat{Open}(#1)}
+\newcommand\catRing{\cat{Ring}}
+\newcommand\catCRing{\cat{CRing}}
 
 % misc
 \newcommand\cocolon{%                   % colon on the right side (i.e. for an adjunction)
