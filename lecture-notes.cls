@@ -95,6 +95,7 @@
     \RequirePackage{babel}
 \fi
 \RequirePackage{paralist}
+\setdefaultenum{(i)}{(a)}{(A)}{1.}
 \RequirePackage{engord}
 \RequirePackage{needspace}
 \RequirePackage{dtklogos}
