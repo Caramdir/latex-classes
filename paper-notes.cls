@@ -255,12 +255,14 @@
     \newtheorem{Rems}[Thm]{Remarks}
     \newtheorem{Exercise}[Thm]{Exercise}
     \newtheorem{Q}[Thm]{Question}
+    \newtheorem{Warning}[Thm]{Warning}
 \else
     \newtheorem*{Rem}{Remark}
     \newtheorem*{RemAd}{Remark*}
     \newtheorem*{Rems}{Remarks}
     \newtheorem*{Exercise}{Exercise}
     \newtheorem*{Q}{Question}
+    \newtheorem*{Warning}{Warning}
 \fi
 
 \ifnumbertheorems
