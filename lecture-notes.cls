@@ -183,6 +183,10 @@
 \markboth{\indexname}{\indexname}%
 \addcontentsline{toc}{chapter}{\indexname}%
 }
+\newcommand*\lettergroup[1]{%
+    \par\textbf{\textsf{\color{sectioningcolor}#1}}\par%
+    \nopagebreak
+}
 
 \RequirePackage[noprefix,refpage,intoc]{nomencl}
 \renewcommand\nomname{List of Notation}
