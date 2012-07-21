@@ -212,6 +212,12 @@
 \newunicodechar{ }{ } % no-break space
 \newunicodechar{ }{ } % narrow no-break space
 \RequirePackage[colorlinks=false,unicode=true]{hyperref}
+\RequirePackage{bookmark}
+\let\ck@oldtableofcontents\tableofcontents
+\def\tableofcontents{%
+    \pdfbookmark{\contentsname}{Contents}%
+    \ck@oldtableofcontents%
+}
 \theoremstyle{plain}
 \ifnumbertheorems
 \newtheorem{Thm}{Theorem}

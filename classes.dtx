@@ -493,6 +493,19 @@ version 2005/12/01 or later.
 %    \begin{macrocode}
 \RequirePackage[colorlinks=false,unicode=true]{hyperref}
 %    \end{macrocode}
+% The bookmark package provides a more modern interface to PDF bookmarks.
+%    \begin{macrocode}
+\RequirePackage{bookmark}
+%    \end{macrocode}
+% Make the table of contents show up in PDF bookmarks.
+%    \begin{macrocode}
+\let\ck@oldtableofcontents\tableofcontents
+\def\tableofcontents{%
+%<long-common>    \cleardoublepage%
+    \pdfbookmark{\contentsname}{Contents}%
+    \ck@oldtableofcontents%
+}   
+%    \end{macrocode}
 % 
 % \section{Set up theorem-like environments}
 %
