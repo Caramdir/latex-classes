@@ -257,6 +257,7 @@
     \newtheorem{LemAd}[Thm]{Lemma*}
     \newtheorem{Alg}[Thm]{Algorithm}
     \newtheorem{DefProp}[Thm]{Definition and Proposition}
+    \newtheorem{Conjecture}[Thm]{Conjecture}
 \else
     \newtheorem*{Fact}{Fact}
     \newtheorem*{Claim}{Claim}
@@ -267,6 +268,7 @@
     \newtheorem*{LemAd}{Lemma*}
     \newtheorem*{Alg}{Algorithm}
     \newtheorem*{DefProp}{Definition and Proposition}
+    \newtheorem*{Conjecture}{Conjecture}
 \fi
 
 \theoremstyle{definition}
