@@ -34,9 +34,11 @@
 \newif\ifnumbertheorems
 \numbertheoremstrue
 \newif\ifbiblatexalpha
+\newif\ifcgs
 \IfEndWith{\jobname}{\detokenize{-kindledxlandscape}}{\kindledxlandscapetrue}{}
 \IfEndWith{\jobname}{\detokenize{-kindledxportrait}}{\kindledxportraittrue}{}
 \IfEndWith{\jobname}{\detokenize{-bw}}{\bwtrue}{}
+\IfEndWith{\jobname}{\detokenize{-cgs}}{\cgstrue}{}
 \DeclareOption{kindledxlandscape}{
     \kindledxlandscapetrue
 }
@@ -55,6 +57,10 @@
 
 \DeclareOption{biblatex-alpha}{
     \biblatexalphatrue
+}
+
+\DeclareOption{gcs}{
+    \gcstrue
 }
 
 \ProcessOptions\relax
@@ -207,6 +213,17 @@
 
 \newcommand\sidepicture[2][]{\marginpar{#2\\[0.5em]{\footnotesize\itshape #1}}}
 \newcommand\reference[1]{\remark{\textit{Reference:} \normalfont #1}}
+\usepackage{comment}
+\newcommand\cgsformat{\small\color{black!60!green}}
+\ifcgs
+    \newcommand\textcgs[1]{{\cgsformat#1}}
+    \specialcomment{cgs}{\begingroup\cgsformat}{\endgroup}
+    \newcommand\cgsIntro{}
+\else
+    \newcommand\textcgs[1]{}
+    \excludecomment{cgs}
+    \newcommand\cgsIntro{}
+\fi
 \def\ck@todooptions{}
 \def\todooptions#1{\def\ck@todooptions{#1}}
 \let\oldtodo\todo

@@ -101,6 +101,7 @@ version 2005/12/01 or later.
 \newif\ifnumbertheorems
 \numbertheoremstrue
 \newif\ifbiblatexalpha
+\newif\ifcgs
 %    \end{macrocode}
 %
 % Try to set some options based on the name of the input file.
@@ -108,6 +109,7 @@ version 2005/12/01 or later.
 \IfEndWith{\jobname}{\detokenize{-kindledxlandscape}}{\kindledxlandscapetrue}{}
 \IfEndWith{\jobname}{\detokenize{-kindledxportrait}}{\kindledxportraittrue}{}
 \IfEndWith{\jobname}{\detokenize{-bw}}{\bwtrue}{}
+\IfEndWith{\jobname}{\detokenize{-cgs}}{\cgstrue}{}
 %    \end{macrocode}
 %
 % Set options based on the options passed to the class.
@@ -130,6 +132,10 @@ version 2005/12/01 or later.
 
 \DeclareOption{biblatex-alpha}{
     \biblatexalphatrue
+}
+
+\DeclareOption{gcs}{
+    \gcstrue
 }
 
 \ProcessOptions\relax
@@ -474,6 +480,21 @@ version 2005/12/01 or later.
 \newcommand\reference[1]{\remark{\textit{Reference:} \normalfont #1}}
 %    \end{macrocode}
 % 
+% \subsection{Confused graduate student version}
+%    \begin{macrocode}
+\usepackage{comment}
+\newcommand\cgsformat{\small\color{black!60!green}}
+\ifcgs
+    \newcommand\textcgs[1]{{\cgsformat#1}}
+    \specialcomment{cgs}{\begingroup\cgsformat}{\endgroup}
+    \newcommand\cgsIntro{}
+\else
+    \newcommand\textcgs[1]{}
+    \excludecomment{cgs}
+    \newcommand\cgsIntro{}
+\fi
+%    \end{macrocode}
+%
 % \subsection{\texttt{todonotes}}
 % Have common options for the \cs{todo} command.
 %    \begin{macrocode}
