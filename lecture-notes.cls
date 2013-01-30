@@ -33,6 +33,7 @@
 \newif\iffinal
 \newif\ifnumbertheorems
 \numbertheoremstrue
+\newif\ifnumberinsections
 \newif\ifbiblatexalpha
 \newif\ifcgs
 \IfEndWith{\jobname}{\detokenize{-kindledxlandscape}}{\kindledxlandscapetrue}{}
@@ -54,11 +55,12 @@
 \DeclareOption{no-theorem-numbers}{
     \numbertheoremsfalse
 }
-
+\DeclareOption{number-in-sections}{
+    \numberinsectionstrue
+}
 \DeclareOption{biblatex-alpha}{
     \biblatexalphatrue
 }
-
 \DeclareOption{gcs}{
     \gcstrue
 }
@@ -260,7 +262,11 @@
 }
 \theoremstyle{plain}
 \ifnumbertheorems
+    \ifnumberinsections
+        \newtheorem{Thm}{Theorem}[section]
+    \else
 \newtheorem{Thm}{Theorem}[chapter]
+    \fi
 \else
     \newtheorem*{Thm}{Theorem}
 \fi
