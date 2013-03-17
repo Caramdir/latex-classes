@@ -355,6 +355,15 @@ version 2005/12/01 or later.
     \setkomafont{subsubsection}{\normalfont\normalcolor\color{sectioningcolor}}
 \fi
 %    \end{macrocode}
+% Add \enquote{Appendix} to appendix titles
+%    \begin{macrocode}
+\newcommand*{\appendixmore}{%
+    \renewcommand*{\othersectionlevelsformat}[3]{%
+        \ifstr{##1}{section}{\appendixname~}{}%
+        ##3\autodot\enskip}
+    \renewcommand*{\sectionmarkformat}{%
+        \appendixname~\thesection\autodot\enskip}}
+%    \end{macrocode}
 %</short-common>
 %
 % \subsection{Common options}

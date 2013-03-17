@@ -170,6 +170,12 @@
     \setkomafont{sectionentry}{\normalfont\normalcolor\scshape}
     \setkomafont{subsubsection}{\normalfont\normalcolor\color{sectioningcolor}}
 \fi
+\newcommand*{\appendixmore}{%
+    \renewcommand*{\othersectionlevelsformat}[3]{%
+        \ifstr{##1}{section}{\appendixname~}{}%
+        ##3\autodot\enskip}
+    \renewcommand*{\sectionmarkformat}{%
+        \appendixname~\thesection\autodot\enskip}}
 \setkomafont{paragraph}{\normalfont\normalcolor\sffamily\bfseries}
 \setkomafont{subparagraph}{\normalfont\normalcolor\sffamily\itshape}
 \pagestyle{scrheadings}
