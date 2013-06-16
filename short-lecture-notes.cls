@@ -111,10 +111,10 @@
 \fi
     ]{biblatex}
 \RequirePackage{etoolbox}
+\RequirePackage{unicode-math}
 \ifluatex
     \RequirePackage{lualatex-math}
 \fi
-\RequirePackage{unicode-math}
 
 \def\ck@mainfont{TeX Gyre Termes}
 \setmainfont[

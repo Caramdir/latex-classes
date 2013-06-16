@@ -259,19 +259,15 @@ version 2005/12/01 or later.
 \RequirePackage{etoolbox}
 %    \end{macrocode}
 %
-% If using \LuaTeX, load some fixes for math.
-%    \begin{macrocode}
-\ifluatex
-    \RequirePackage{lualatex-math}
-\fi
-%    \end{macrocode}
-%
 % \section{Fonts}
 %
 % We use \texttt{fontspec} to load the text fonts and \texttt{unicode-math} for math.
 % The various \cs{ck@...font} macros hold the font names so that they can be referred to in the text.
 %    \begin{macrocode}
 \RequirePackage{unicode-math}
+\ifluatex
+    \RequirePackage{lualatex-math}
+\fi
 
 \def\ck@mainfont{TeX Gyre Termes}
 \setmainfont[
