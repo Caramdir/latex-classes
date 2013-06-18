@@ -5,7 +5,7 @@
 %% The original source files were:
 %%
 %% classes.dtx  (with options: `short-notes,common,short-common')
-%% Copyright (C) 2011 by Clemens Koppensteiner
+%% Copyright (C) 2011-2013 by Clemens Koppensteiner
 %% -------------------------------------------
 %% 
 %% This file may be distributed and/or modified under the
@@ -20,7 +20,7 @@
 %% version 2005/12/01 or later.
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{short-notes}
-   [2011/07/22 v0.2
+   [2013/06/18 v0.3
      A class for short notes
    ]
 \LoadClassWithOptions{scrartcl}
@@ -111,6 +111,7 @@
 \fi
     ]{biblatex}
 \RequirePackage{etoolbox}
+\RequirePackage{microtype}
 \RequirePackage{unicode-math}
 \ifluatex
     \RequirePackage{lualatex-math}
