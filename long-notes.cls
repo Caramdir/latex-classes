@@ -108,6 +108,7 @@
 \RequirePackage{needspace}
 \RequirePackage{dtklogos}
 \RequirePackage[backend=biber,
+    maxnames=100,
 \ifbiblatexalpha
     style=alphabetic
 \fi
@@ -127,7 +128,8 @@
   BoldFont=*-bold,
   ItalicFont=*-italic,
   BoldItalicFont=*-bolditalic,
-  Scale=MatchUppercase
+  Scale=MatchUppercase,
+  Numbers=OldStyle
 ]{texgyretermes}
 
 \def\ck@sansfont{TeX Gyre Adventor}
@@ -163,8 +165,8 @@
     \setkomafont{section}{\normalfont\normalcolor\sffamily\Large\color{sectioningcolor}}
     \setkomafont{subsection}{\normalfont\normalcolor\sffamily\large\color{sectioningcolor}}
 \fi
-\setkomafont{paragraph}{\normalfont\normalcolor\sffamily\bfseries}
-\setkomafont{subparagraph}{\normalfont\normalcolor\sffamily\itshape}
+\setkomafont{paragraph}{\normalfont\normalcolor\scshape\color{sectioningcolor}}
+\setkomafont{subparagraph}{\normalfont\normalcolor\itshape\color{sectioningcolor}}
 \pagestyle{scrheadings}
 
 \ifkindledx

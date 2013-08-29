@@ -248,6 +248,7 @@ version 2005/12/01 or later.
 % Bibliographies
 %    \begin{macrocode}
 \RequirePackage[backend=biber,
+    maxnames=100,
 \ifbiblatexalpha
     style=alphabetic
 \fi
@@ -282,7 +283,8 @@ version 2005/12/01 or later.
   BoldFont=*-bold,
   ItalicFont=*-italic,
   BoldItalicFont=*-bolditalic,
-  Scale=MatchUppercase
+  Scale=MatchUppercase,
+  Numbers=OldStyle
 ]{texgyretermes}
 
 \def\ck@sansfont{TeX Gyre Adventor}
@@ -339,13 +341,13 @@ version 2005/12/01 or later.
 \KOMAoptions{numbers=enddot}
 
 \ifbw
-    \setkomafont{title}{\normalfont\normalcolor\sffamily\scshape\LARGE\color{sectioningcolor}}
-    \setkomafont{part}{\normalfont\normalcolor\sffamily\bfseries\Large\color{sectioningcolor}}
-    \setkomafont{partnumber}{\normalfont\normalcolor\sffamily\bfseries\Large\color{sectioningcolor}}
-    \setkomafont{section}{\normalfont\normalcolor\sffamily\scshape\Large\color{sectioningcolor}}
-    \setkomafont{subsection}{\normalfont\normalcolor\sffamily\scshape\large\color{sectioningcolor}}
-    \setkomafont{sectionentry}{\normalfont\normalcolor\sffamily\scshape}
-    \setkomafont{subsubsection}{\normalfont\normalcolor\sffamily\scshape\color{sectioningcolor}}
+    \setkomafont{title}{\normalfont\normalcolor\scshape\LARGE\color{sectioningcolor}}
+    \setkomafont{part}{\normalfont\normalcolor\bfseries\Large\color{sectioningcolor}}
+    \setkomafont{partnumber}{\normalfont\normalcolor\bfseries\Large\color{sectioningcolor}}
+    \setkomafont{section}{\normalfont\normalcolor\scshape\Large\color{sectioningcolor}}
+    \setkomafont{subsection}{\normalfont\normalcolor\scshape\large\color{sectioningcolor}}
+    \setkomafont{sectionentry}{\normalfont\normalcolor\scshape}
+    \setkomafont{subsubsection}{\normalfont\normalcolor\itshape\color{sectioningcolor}}
 \else
     \setkomafont{title}{\normalfont\normalcolor\scshape\LARGE\color{sectioningcolor}}
     \setkomafont{part}{\normalfont\normalcolor\bfseries\large\color{sectioningcolor}\centering}
@@ -353,7 +355,7 @@ version 2005/12/01 or later.
     \setkomafont{section}{\normalfont\normalcolor\scshape\large\color{sectioningcolor}\centering}
     \setkomafont{subsection}{\normalfont\normalcolor\scshape\color{sectioningcolor}}
     \setkomafont{sectionentry}{\normalfont\normalcolor\scshape}
-    \setkomafont{subsubsection}{\normalfont\normalcolor\color{sectioningcolor}}
+    \setkomafont{subsubsection}{\normalfont\normalcolor\itshape\color{sectioningcolor}}
 \fi
 %    \end{macrocode}
 % Add \enquote{Appendix} to appendix titles
@@ -370,8 +372,8 @@ version 2005/12/01 or later.
 % \subsection{Common options}
 %<*common>
 %    \begin{macrocode}
-\setkomafont{paragraph}{\normalfont\normalcolor\sffamily\bfseries}
-\setkomafont{subparagraph}{\normalfont\normalcolor\sffamily\itshape}
+\setkomafont{paragraph}{\normalfont\normalcolor\scshape\color{sectioningcolor}}
+\setkomafont{subparagraph}{\normalfont\normalcolor\itshape\color{sectioningcolor}}
 %    \end{macrocode}
 % 
 % \section{Header and footer}

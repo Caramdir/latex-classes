@@ -106,6 +106,7 @@
 \RequirePackage{needspace}
 \RequirePackage{dtklogos}
 \RequirePackage[backend=biber,
+    maxnames=100,
 \ifbiblatexalpha
     style=alphabetic
 \fi
@@ -125,7 +126,8 @@
   BoldFont=*-bold,
   ItalicFont=*-italic,
   BoldItalicFont=*-bolditalic,
-  Scale=MatchUppercase
+  Scale=MatchUppercase,
+  Numbers=OldStyle
 ]{texgyretermes}
 
 \def\ck@sansfont{TeX Gyre Adventor}
@@ -155,13 +157,13 @@
 \KOMAoptions{numbers=enddot}
 
 \ifbw
-    \setkomafont{title}{\normalfont\normalcolor\sffamily\scshape\LARGE\color{sectioningcolor}}
-    \setkomafont{part}{\normalfont\normalcolor\sffamily\bfseries\Large\color{sectioningcolor}}
-    \setkomafont{partnumber}{\normalfont\normalcolor\sffamily\bfseries\Large\color{sectioningcolor}}
-    \setkomafont{section}{\normalfont\normalcolor\sffamily\scshape\Large\color{sectioningcolor}}
-    \setkomafont{subsection}{\normalfont\normalcolor\sffamily\scshape\large\color{sectioningcolor}}
-    \setkomafont{sectionentry}{\normalfont\normalcolor\sffamily\scshape}
-    \setkomafont{subsubsection}{\normalfont\normalcolor\sffamily\scshape\color{sectioningcolor}}
+    \setkomafont{title}{\normalfont\normalcolor\scshape\LARGE\color{sectioningcolor}}
+    \setkomafont{part}{\normalfont\normalcolor\bfseries\Large\color{sectioningcolor}}
+    \setkomafont{partnumber}{\normalfont\normalcolor\bfseries\Large\color{sectioningcolor}}
+    \setkomafont{section}{\normalfont\normalcolor\scshape\Large\color{sectioningcolor}}
+    \setkomafont{subsection}{\normalfont\normalcolor\scshape\large\color{sectioningcolor}}
+    \setkomafont{sectionentry}{\normalfont\normalcolor\scshape}
+    \setkomafont{subsubsection}{\normalfont\normalcolor\itshape\color{sectioningcolor}}
 \else
     \setkomafont{title}{\normalfont\normalcolor\scshape\LARGE\color{sectioningcolor}}
     \setkomafont{part}{\normalfont\normalcolor\bfseries\large\color{sectioningcolor}\centering}
@@ -169,7 +171,7 @@
     \setkomafont{section}{\normalfont\normalcolor\scshape\large\color{sectioningcolor}\centering}
     \setkomafont{subsection}{\normalfont\normalcolor\scshape\color{sectioningcolor}}
     \setkomafont{sectionentry}{\normalfont\normalcolor\scshape}
-    \setkomafont{subsubsection}{\normalfont\normalcolor\color{sectioningcolor}}
+    \setkomafont{subsubsection}{\normalfont\normalcolor\itshape\color{sectioningcolor}}
 \fi
 \newcommand*{\appendixmore}{%
     \renewcommand*{\othersectionlevelsformat}[3]{%
@@ -177,8 +179,8 @@
         ##3\autodot\enskip}
     \renewcommand*{\sectionmarkformat}{%
         \appendixname~\thesection\autodot\enskip}}
-\setkomafont{paragraph}{\normalfont\normalcolor\sffamily\bfseries}
-\setkomafont{subparagraph}{\normalfont\normalcolor\sffamily\itshape}
+\setkomafont{paragraph}{\normalfont\normalcolor\scshape\color{sectioningcolor}}
+\setkomafont{subparagraph}{\normalfont\normalcolor\itshape\color{sectioningcolor}}
 \pagestyle{scrheadings}
 \AtBeginDocument{
     \clearscrheadfoot
