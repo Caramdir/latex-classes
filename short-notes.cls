@@ -111,6 +111,10 @@
     style=alphabetic
 \fi
     ]{biblatex}
+\AtBeginDocument{
+    \def\bibname{bibliography}
+    \def\refname{references}
+}
 \RequirePackage{etoolbox}
 \RequirePackage{microtype}
 \RequirePackage{unicode-math}
