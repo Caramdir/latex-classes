@@ -291,8 +291,10 @@
 \theoremstyle{definition}
 \ifnumbertheorems
     \newtheorem{Def}[Thm]{Definition}
+    \newtheorem{Assumption}[Thm]{Assumption}
 \else
     \newtheorem*{Def}{Definition}
+    \newtheorem*{Assumption}{Assumption}
 \fi
 \newtheorem*{Notation}{Notation}
 
