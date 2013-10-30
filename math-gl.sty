@@ -10,3 +10,14 @@
 \newcommand\catIndCoh[2][]{\cat{IndCoh}_{#1}(#2)}     % category of ind-coherent sheaves
 \newcommand\IndCoh{\mathrm{IndCoh}}     % to mark IndCoh versions of functors
 
+\newcommand\sHecke[1]{%                 % spectral Hecke stack
+    \operatorname{Hecke}_#1^{\mathrm{spec}}}
+\newcommand\sHeckeStack[1]{%            % spectral Hecke stack (the definition)
+    \rquot{\pt}{#1} 
+    ×\displaylimits_{\rquot{\liealg{\MakeLowercase{#1}}}{#1}}%
+    \rquot{\pt}{#1}}
+\newcommand\sHeckeCat[1]{%              % spectral Hecke category
+    \catIndCoh[\rquot{\mathrm{Nilp}(\liealg{\MakeLowercase{#1}}^*)}{#1}]{\sHecke G}}
+
+\newcommand\Sing{\operatorname{Sing}}   % stack of singularities
+
