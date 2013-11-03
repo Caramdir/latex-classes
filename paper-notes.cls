@@ -206,6 +206,7 @@
     matrix,
     intersections}
 \tikzstyle{every picture}+=[>=latex]
+\RequirePackage{tikz-cd}
 \tikzset{commutative diagram/.style={
     matrix of math nodes,
     column sep=2.5em,
