@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{math-gl}[2013/08/31 Useful commands for writing texts about Geometric Langlands]
+\ProvidesPackage{math-gl}[2013/12/07 Useful commands for writing texts about Geometric Langlands]
 \RequirePackage{math-ag}
 
 \newcommand\ld\check                    % Langlands dual
@@ -11,13 +11,13 @@
 \newcommand\IndCoh{\mathrm{IndCoh}}     % to mark IndCoh versions of functors
 
 \newcommand\sHecke[1]{%                 % spectral Hecke stack
-    \operatorname{Hecke}_#1^{\mathrm{spec}}}
+    \operatorname{Hecke}_{#1}^{\mathrm{spec}}}
 \newcommand\sHeckeStack[1]{%            % spectral Hecke stack (the definition)
     \rquot{\pt}{#1} 
     ×\displaylimits_{\rquot{\liealg{\MakeLowercase{#1}}}{#1}}%
     \rquot{\pt}{#1}}
 \newcommand\sHeckeCat[1]{%              % spectral Hecke category
-    \catIndCoh[\rquot{\mathrm{Nilp}(\liealg{\MakeLowercase{#1}}^*)}{#1}]{\sHecke G}}
+    \catIndCoh[\rquot{\mathrm{Nilp}(\liealg{\MakeLowercase{#1}}^*)}{#1}]{\sHecke{#1}}}
 
 \newcommand\Sing{\operatorname{Sing}}   % stack of singularities
 
