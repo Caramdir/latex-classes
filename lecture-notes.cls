@@ -321,6 +321,7 @@
     \newtheorem{Rems}[Thm]{Remarks}
     \newtheorem{Exercise}[Thm]{Exercise}
     \newtheorem{Q}[Thm]{Question}
+    \newtheorem{Problem}[Thm]{Problem}
     \newtheorem{Warning}[Thm]{Warning}
 \else
     \newtheorem*{Rem}{Remark}
@@ -328,6 +329,7 @@
     \newtheorem*{Rems}{Remarks}
     \newtheorem*{Exercise}{Exercise}
     \newtheorem*{Q}{Question}
+    \newtheorem*{Problem}{Problem}
     \newtheorem*{Warning}{Warning}
 \fi
 
