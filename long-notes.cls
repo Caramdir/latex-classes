@@ -102,8 +102,11 @@
 \else
     \RequirePackage{babel}
 \fi
-\RequirePackage{paralist}
-\setdefaultenum{(i)}{(a)}{(A)}{1.}
+\RequirePackage{enumitem}
+\setlist[enumerate,1]{label=(\roman*)}
+\setlist[enumerate,2]{label=(\alph*)}
+\setlist[enumerate,3]{label=(\Alph*)}
+\setlist[enumerate,4]{label=\arabic*.}
 \RequirePackage{engord}
 \RequirePackage{needspace}
 \RequirePackage{dtklogos}
