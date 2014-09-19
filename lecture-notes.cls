@@ -109,7 +109,6 @@
 \setlist[enumerate,4]{label=\arabic*.}
 \RequirePackage{engord}
 \RequirePackage{needspace}
-\RequirePackage{dtklogos}
 \RequirePackage[backend=biber,
     maxnames=100,
 \ifbiblatexalpha
