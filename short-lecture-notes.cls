@@ -191,7 +191,7 @@
 \AtBeginDocument{
     \clearscrheadfoot
     \let\@@title\@title
-    \ihead{\normalfont\scshape\color{gray}\@@title}
+    \ihead{\normalfont\scshape\color{gray}\MakeLowercase{\@@title}}
     \chead{}
     \ohead{\pagemark}
     \cfoot[\pagemark]{}

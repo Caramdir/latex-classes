@@ -191,7 +191,7 @@
 \AtBeginDocument{
     \clearscrheadfoot
     \let\@@title\@title
-    \ihead{\normalfont\scshape\color{gray}\@@title}
+    \ihead{\normalfont\scshape\color{gray}\MakeLowercase{\@@title}}
     \chead{}
     \ohead{\pagemark}
     \cfoot[\pagemark]{}
@@ -359,7 +359,7 @@ Author={\@author}
       {\subject@font \@subject \par}
       \vskip 1.5em
     \fi
-    {\titlefont \@title \par}%
+    {\titlefont\MakeLowercase{\@title} \par}%
     \vskip .5em
     {\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
     \vskip 1em

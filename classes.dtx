@@ -421,7 +421,7 @@ version 2005/12/01 or later.
 \AtBeginDocument{
     \clearscrheadfoot
     \let\@@title\@title
-    \ihead{\normalfont\scshape\color{gray}\@@title}
+    \ihead{\normalfont\scshape\color{gray}\MakeLowercase{\@@title}}
     \chead{}
     \ohead{\pagemark}
     \cfoot[\pagemark]{}
@@ -846,7 +846,7 @@ USA.
 %</paper-notes>
 %<*short-notes>
 %    \begin{macrocode}
-    {\titlefont \@title \par}%
+    {\titlefont\MakeLowercase{\@title} \par}%
 %    \end{macrocode}
 %</short-notes>
 %    \begin{macrocode}
