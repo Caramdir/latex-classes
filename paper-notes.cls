@@ -107,7 +107,6 @@
 \setlist[enumerate,4]{label=\arabic*.}
 \RequirePackage{engord}
 \RequirePackage{needspace}
-\RequirePackage{dtklogos}
 \RequirePackage[backend=biber,
     maxnames=100,
 \ifbiblatexalpha
@@ -165,9 +164,9 @@
 
 \ifbw
     \setkomafont{title}{\normalfont\normalcolor\scshape\LARGE\color{sectioningcolor}}
-    \setkomafont{part}{\normalfont\normalcolor\bfseries\Large\color{sectioningcolor}}
-    \setkomafont{partnumber}{\normalfont\normalcolor\bfseries\Large\color{sectioningcolor}}
-    \setkomafont{section}{\normalfont\normalcolor\scshape\Large\color{sectioningcolor}}
+    \setkomafont{part}{\normalfont\normalcolor\bfseries\Large\color{sectioningcolor}\centering}
+    \setkomafont{partnumber}{\normalfont\normalcolor\bfseries\Large\color{sectioningcolor}\centering}
+    \setkomafont{section}{\normalfont\normalcolor\scshape\Large\color{sectioningcolor}\centering}
     \setkomafont{subsection}{\normalfont\normalcolor\scshape\large\color{sectioningcolor}}
     \setkomafont{sectionentry}{\normalfont\normalcolor\scshape}
     \setkomafont{subsubsection}{\normalfont\normalcolor\itshape\color{sectioningcolor}}
@@ -192,7 +191,7 @@
 \AtBeginDocument{
     \clearscrheadfoot
     \let\@@title\@title
-    \ihead{\normalfont\scshape\color{gray}\@@title}
+    \ihead{\normalfont\scshape\color{gray}\MakeLowercase{\@@title}}
     \chead{}
     \ohead{\pagemark}
     \cfoot[\pagemark]{}

@@ -245,7 +245,7 @@ version 2005/12/01 or later.
 %    \end{macrocode}
 % Various \TeX\ logos.
 %    \begin{macrocode}
-\RequirePackage{dtklogos}
+%\RequirePackage{dtklogos}
 %    \end{macrocode}
 %
 % Bibliographies
@@ -349,9 +349,9 @@ version 2005/12/01 or later.
 
 \ifbw
     \setkomafont{title}{\normalfont\normalcolor\scshape\LARGE\color{sectioningcolor}}
-    \setkomafont{part}{\normalfont\normalcolor\bfseries\Large\color{sectioningcolor}}
-    \setkomafont{partnumber}{\normalfont\normalcolor\bfseries\Large\color{sectioningcolor}}
-    \setkomafont{section}{\normalfont\normalcolor\scshape\Large\color{sectioningcolor}}
+    \setkomafont{part}{\normalfont\normalcolor\bfseries\Large\color{sectioningcolor}\centering}
+    \setkomafont{partnumber}{\normalfont\normalcolor\bfseries\Large\color{sectioningcolor}\centering}
+    \setkomafont{section}{\normalfont\normalcolor\scshape\Large\color{sectioningcolor}\centering}
     \setkomafont{subsection}{\normalfont\normalcolor\scshape\large\color{sectioningcolor}}
     \setkomafont{sectionentry}{\normalfont\normalcolor\scshape}
     \setkomafont{subsubsection}{\normalfont\normalcolor\itshape\color{sectioningcolor}}
@@ -421,7 +421,7 @@ version 2005/12/01 or later.
 \AtBeginDocument{
     \clearscrheadfoot
     \let\@@title\@title
-    \ihead{\normalfont\scshape\color{gray}\@@title}
+    \ihead{\normalfont\scshape\color{gray}\MakeLowercase{\@@title}}
     \chead{}
     \ohead{\pagemark}
     \cfoot[\pagemark]{}
@@ -846,7 +846,7 @@ USA.
 %</paper-notes>
 %<*short-notes>
 %    \begin{macrocode}
-    {\titlefont \@title \par}%
+    {\titlefont\MakeLowercase{\@title} \par}%
 %    \end{macrocode}
 %</short-notes>
 %    \begin{macrocode}
