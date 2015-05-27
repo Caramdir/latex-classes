@@ -249,7 +249,7 @@
       {\subject@font \@subject \par}
       \vskip 1.5em
     \fi
-    {\Large\scshape\color{sectioningcolor}\MakeLowercase{\@title} \par}%
+    {\LARGE\scshape\color{sectioningcolor}\MakeLowercase{\@title} \par}%
     \vskip .5em
     {\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
     \vskip 1em
