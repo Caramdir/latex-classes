@@ -273,4 +273,8 @@
   \par
   \vskip 1em
 }%
-\endinput
+
+% Characters that do not exist is TeX Gyre Termes Math
+\AtBeginDocument{
+	\def\similarrightarrow{\xrightarrow{\sim}}
+}
