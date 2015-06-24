@@ -82,6 +82,7 @@
 
 \defbibheading{bibliography}[\refname]{%
     \bookmarksetupnext{level=section}
+    \phantomsection%
     \section*{#1}%
     \addcontentsline{toc}{section}{#1}%
     \markboth{#1}{#1}%
