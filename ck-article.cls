@@ -49,6 +49,8 @@
 
 \RequirePackage{csquotes}
 
+\RequirePackage[overload]{textcase}
+
 \RequirePackage{polyglossia}
 \setmainlanguage{english}
 
