@@ -136,8 +136,17 @@
 \titleformat
     {\subsection}
     [hang]
-    {\normalfont\normalsize\ifbw\bfseries\fi\itshape\color{sectioningcolor}}
+    {\normalfont\normalsize\ifbw\bfseries\fi\scshape\color{sectioningcolor}}
     {\thesubsection.\ }
+    {0pt}
+    {\MakeLowercase}
+    []
+
+\titleformat
+    {\subsubsection}
+    [hang]
+    {\normalfont\normalsize\ifbw\bfseries\fi\itshape\color{sectioningcolor}}
+    {\thesubsubsection.\ }
     {0pt}
     {}
     []
