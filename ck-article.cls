@@ -286,6 +286,22 @@
   \vskip 1em
 }%
 
+\newcommand\maketitleonly{%
+	\def\@maketitle{%
+		\clearpage
+		\setparsizes{\z@}{\z@}{\z@\@plus 1fil}\par@updaterelative
+		\vskip 2em%
+		\begin{center}%
+			{\LARGE\scshape\color{sectioningcolor}\MakeLowercase{\@title} \par}%
+			\vskip .5em
+			{\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
+		\end{center}%
+		\par
+		\vskip 1em
+	}%
+	\maketitle
+}
+
 % Characters that do not exist is TeX Gyre Termes Math
 \AtBeginDocument{
 	\def\similarrightarrow{\xrightarrow{\sim}}
