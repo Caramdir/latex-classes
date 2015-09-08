@@ -263,7 +263,7 @@
     \fi
     {\LARGE\scshape\color{sectioningcolor}\MakeLowercase{\@title} \par}%
     \vskip .5em
-    {\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
+    {\ifx\@subtitle\@empty\else\Large\scshape\color{sectioningcolor}\MakeLowercase{\@subtitle}\par\fi}%
     \vskip 1em
     {\scshape
       \lineskip .5em%
@@ -294,7 +294,7 @@
 		\begin{center}%
 			{\LARGE\scshape\color{sectioningcolor}\MakeLowercase{\@title} \par}%
 			\vskip .5em
-			{\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
+			{\ifx\@subtitle\@empty\else\Large\scshape\color{sectioningcolor}\MakeLowercase{\@subtitle}\par\fi}%
 		\end{center}%
 		\par
 		\vskip 1em
