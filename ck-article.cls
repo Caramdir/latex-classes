@@ -49,6 +49,8 @@
 
 \RequirePackage{csquotes}
 
+\RequirePackage[overload]{textcase}
+
 \RequirePackage{polyglossia}
 \setmainlanguage{english}
 
@@ -82,6 +84,7 @@
 
 \defbibheading{bibliography}[\refname]{%
     \bookmarksetupnext{level=section}
+    \phantomsection%
     \section*{#1}%
     \addcontentsline{toc}{section}{#1}%
     \markboth{#1}{#1}%
@@ -133,8 +136,17 @@
 \titleformat
     {\subsection}
     [hang]
-    {\normalfont\normalsize\ifbw\bfseries\fi\itshape\color{sectioningcolor}}
+    {\normalfont\normalsize\ifbw\bfseries\fi\scshape\color{sectioningcolor}}
     {\thesubsection.\ }
+    {0pt}
+    {\MakeLowercase}
+    []
+
+\titleformat
+    {\subsubsection}
+    [hang]
+    {\normalfont\normalsize\ifbw\bfseries\fi\itshape\color{sectioningcolor}}
+    {\thesubsubsection.\ }
     {0pt}
     {}
     []
@@ -251,7 +263,7 @@
     \fi
     {\LARGE\scshape\color{sectioningcolor}\MakeLowercase{\@title} \par}%
     \vskip .5em
-    {\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
+    {\ifx\@subtitle\@empty\else\Large\scshape\color{sectioningcolor}\MakeLowercase{\@subtitle}\par\fi}%
     \vskip 1em
     {\scshape
       \lineskip .5em%
@@ -274,7 +286,24 @@
   \vskip 1em
 }%
 
+\newcommand\maketitleonly{%
+	\def\@maketitle{%
+		\clearpage
+		\setparsizes{\z@}{\z@}{\z@\@plus 1fil}\par@updaterelative
+		\vskip 2em%
+		\begin{center}%
+			{\LARGE\scshape\color{sectioningcolor}\MakeLowercase{\@title} \par}%
+			\vskip .5em
+			{\ifx\@subtitle\@empty\else\Large\scshape\color{sectioningcolor}\MakeLowercase{\@subtitle}\par\fi}%
+		\end{center}%
+		\par
+		\vskip 1em
+	}%
+	\maketitle
+}
+
 % Characters that do not exist is TeX Gyre Termes Math
 \AtBeginDocument{
 	\def\similarrightarrow{\xrightarrow{\sim}}
+	\def\setminus{-}
 }
