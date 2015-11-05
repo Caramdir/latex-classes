@@ -102,7 +102,7 @@
 \else
     \RequirePackage{babel}
 \fi
-\RequirePackage{enumitem}
+\RequirePackage[shortlabels]{enumitem}
 \setlist[enumerate,1]{label=(\roman*)}
 \setlist[enumerate,2]{label=(\alph*)}
 \setlist[enumerate,3]{label=(\Alph*)}
