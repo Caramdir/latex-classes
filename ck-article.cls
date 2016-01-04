@@ -11,8 +11,10 @@
 \newif\ifbw
 \newif\iffinal
 \newif\ifnumberinsections
+\newif\iflargefont
 
 \IfEndWith{\jobname}{\detokenize{-bw}}{\bwtrue}{}
+\IfEndWith{\jobname}{\detokenize{-large}}{\largefonttrue}{}
 
 \DeclareOption{bw}{
     \bwtrue
@@ -26,15 +28,23 @@
     \numberinsectionstrue
 }
 
+\DeclareOption{large-font}{
+    \largefonttrue
+}
+
 \ProcessOptions\relax
 
 \KOMAoptions{
     paper=letter,
-    fontsize=10pt,
     footinclude=false,
     headinclude=false,
     pagesize,
 }
+\iflargefont
+    \KOMAoptions{fontsize=14pt}
+\else
+    \KOMAoptions{fontsize=10pt}
+\fi
 \recalctypearea
 
 \RequirePackage{newunicodechar}
