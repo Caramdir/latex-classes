@@ -10,6 +10,7 @@
 
 \newif\ifbw
 \newif\iffinal
+\newif\ifendatcurrentposition
 
 \IfEndWith{\jobname}{\detokenize{-bw}}{\bwtrue}{}
 
@@ -22,6 +23,13 @@
 }
 
 \ProcessOptions\relax
+
+\IfEndWith{\jobname}{\detokenize{-current}}{
+	\finaltrue
+	\newcommand\currentpos{\ifx\outro\undefined\else\outro\fi\end{document}}
+}{
+	\newcommand\currentpos{}
+}
 
 \KOMAoptions{
     paper=letter,
