@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
-\ProvidesClass{thesis}
-   [2015/05/20 v0
+\ProvidesClass{ck-article}
+   [2016/01/04 v0
       A class for my articles and notes
    ]
 \LoadClassWithOptions{scrartcl}
@@ -11,8 +11,11 @@
 \newif\ifbw
 \newif\iffinal
 \newif\ifendatcurrentposition
+\newif\ifnumberinsections
+\newif\iflargefont
 
 \IfEndWith{\jobname}{\detokenize{-bw}}{\bwtrue}{}
+\IfEndWith{\jobname}{\detokenize{-large}}{\largefonttrue}{}
 
 \DeclareOption{bw}{
     \bwtrue
@@ -20,6 +23,14 @@
 
 \DeclareOption{final}{
     \finaltrue
+}
+
+\DeclareOption{number-in-sections}{
+    \numberinsectionstrue
+}
+
+\DeclareOption{large-font}{
+    \largefonttrue
 }
 
 \ProcessOptions\relax
@@ -33,11 +44,15 @@
 
 \KOMAoptions{
     paper=letter,
-    fontsize=10pt,
     footinclude=false,
     headinclude=false,
     pagesize,
 }
+\iflargefont
+    \KOMAoptions{fontsize=14pt}
+\else
+    \KOMAoptions{fontsize=10pt}
+\fi
 \recalctypearea
 
 \RequirePackage{newunicodechar}
@@ -209,7 +224,11 @@
 \RequirePackage{bookmark}
 
 \theoremstyle{plain}
-\newtheorem{Thm}{Theorem}
+\ifnumberinsections
+	\newtheorem{Thm}{Theorem}[section]
+\else
+	\newtheorem{Thm}{Theorem}
+\fi
 \newtheorem{Fact}[Thm]{Fact}
 \newtheorem{Claim}[Thm]{Claim}
 \newtheorem{Prop}[Thm]{Proposition}
