@@ -333,4 +333,5 @@
 \AtBeginDocument{
 	\def\similarrightarrow{\xrightarrow{\sim}}
 	\def\setminus{-}
+    \def\rightdasharrow{\mathrel{-\,}\rightarrow}
 }
