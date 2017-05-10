@@ -174,6 +174,7 @@
     {}
     []
 
+\setkomafont{disposition}{\normalfont}
 
 %\dottedcontents{section}[3.8em]{}{2.3em}{1pc}
 % TODO: Make subsections appear in the PDF bookmarks, but not in the toc.
