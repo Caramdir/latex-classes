@@ -253,6 +253,7 @@
 \newtheorem{Rems}[Thm]{Remarks}
 \newtheorem{Exercise}[Thm]{Exercise}
 \newtheorem{Q}[Thm]{Question}
+\newtheorem{A}[Thm]{Answer}
 \newtheorem{Problem}[Thm]{Problem}
 \newtheorem{Warning}[Thm]{Warning}
 \declaretheorem[name=Example,sibling=Thm,qed={\lower-0.3ex\hbox{$◯$}}]{Ex}
