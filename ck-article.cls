@@ -12,7 +12,9 @@
 \newif\iffinal
 \newif\ifendatcurrentposition
 \newif\ifnumberinsections
+\newif\ifnumberinsubsections
 \newif\iflargefont
+\newif\ifnumberparagraphs
 
 \IfEndWith{\jobname}{\detokenize{-bw}}{\bwtrue}{}
 \IfEndWith{\jobname}{\detokenize{-large}}{\largefonttrue}{}
@@ -27,6 +29,13 @@
 
 \DeclareOption{number-in-sections}{
     \numberinsectionstrue
+}
+\DeclareOption{number-in-subsections}{
+    \numberinsubsectionstrue
+}
+
+\DeclareOption{number-paragraphs}{
+    \numberparagraphstrue
 }
 
 \DeclareOption{large-font}{
@@ -174,6 +183,26 @@
     {}
     []
 
+\ifnumberparagraphs
+	\setcounter{secnumdepth}{4}
+	\titleformat
+		{\paragraph}
+		[runin]
+		{\stepcounter{Thm}\normalfont\normalsize\bfseries}
+		{\theThm.\ }
+		{0pt}
+		{}
+		[\protected@xdef\@currentlabel{\p@Thm\theThm}]
+\else
+	\titleformat
+		{\paragraph}
+		[runin]
+		{\normalfont\normalsize\bfseries}
+		{}
+		{0pt}
+		{}
+\fi
+
 \setkomafont{disposition}{\normalfont}
 
 %\dottedcontents{section}[3.8em]{}{2.3em}{1pc}
@@ -228,7 +257,11 @@
 \ifnumberinsections
 	\newtheorem{Thm}{Theorem}[section]
 \else
-	\newtheorem{Thm}{Theorem}
+	\ifnumberinsubsections
+		\newtheorem{Thm}{Theorem}[subsection]
+	\else
+		\newtheorem{Thm}{Theorem}
+	\fi
 \fi
 \newtheorem{Fact}[Thm]{Fact}
 \newtheorem{Claim}[Thm]{Claim}
