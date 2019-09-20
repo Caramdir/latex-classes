@@ -52,7 +52,6 @@
 }
 
 \KOMAoptions{
-    paper=letter,
     footinclude=false,
     headinclude=false,
     pagesize,
