@@ -291,6 +291,38 @@
 \declaretheorem[name=Example,sibling=Thm,qed={\lower-0.3ex\hbox{$◯$}}]{Ex}
 \declaretheorem[name=Examples,sibling=Ex,qed={\lower-0.3ex\hbox{$◯$}}]{Exs}
 
+% Unnumbered theorems
+\theoremstyle{plain}
+\newtheorem*{Thm*}{Theorem}
+\newtheorem*{Fact*}{Fact}
+\newtheorem*{Claim*}{Claim}
+\newtheorem*{Prop*}{Proposition}
+\newtheorem*{Cor*}{Corollary}
+\newtheorem*{CorAd*}{Corollary*}
+\newtheorem*{Lem*}{Lemma}
+\newtheorem*{LemAd*}{Lemma*}
+\newtheorem*{Alg*}{Algorithm}
+\newtheorem*{DefProp*}{Definition and Proposition}
+\newtheorem*{Conjecture*}{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem*{Def*}{Definition}
+\newtheorem*{Assumption*}{Assumption}
+\newtheorem*{Construction*}{Construction}
+\newtheorem*{Notation*}{Notation}
+
+\theoremstyle{remark}
+\newtheorem*{Rem*}{Remark}
+\newtheorem*{RemAd*}{Remark*}
+\newtheorem*{Rems*}{Remarks}
+\newtheorem*{Exercise*}{Exercise}
+\newtheorem*{Q*}{Question}
+\newtheorem*{A*}{Answer}
+\newtheorem*{Problem*}{Problem}
+\newtheorem*{Warning*}{Warning}
+\declaretheorem[numbered=no,name=Example,qed={\lower-0.3ex\hbox{$◯$}}]{Ex*}
+\declaretheorem[numbered=no,name=Examples,qed={\lower-0.3ex\hbox{$◯$}}]{Exs*}
+
 \let\@version\@empty%
 \newcommand{\version}[1]{\gdef\@version{#1}}%
 
