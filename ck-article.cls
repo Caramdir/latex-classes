@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{ck-article}
-   [2016/01/04 v0
+   [2020/06/29 v0.1
       A class for my articles and notes
    ]
 \LoadClassWithOptions{scrartcl}
@@ -265,31 +265,42 @@
 \newtheorem{Fact}[Thm]{Fact}
 \newtheorem{Claim}[Thm]{Claim}
 \newtheorem{Prop}[Thm]{Proposition}
+\newtheorem{Proposition}[Thm]{Proposition}
 \newtheorem{Cor}[Thm]{Corollary}
+\newtheorem{Corollary}[Thm]{Corollary}
 \newtheorem{CorAd}[Thm]{Corollary*}
 \newtheorem{Lem}[Thm]{Lemma}
+\newtheorem{Lemma}[Thm]{Lemma}
 \newtheorem{LemAd}[Thm]{Lemma*}
 \newtheorem{Alg}[Thm]{Algorithm}
+\newtheorem{Algorithm}[Thm]{Algorithm}
 \newtheorem{DefProp}[Thm]{Definition and Proposition}
 \newtheorem{Conjecture}[Thm]{Conjecture}
 
 \theoremstyle{definition}
 \newtheorem{Def}[Thm]{Definition}
+\newtheorem{Definition}[Thm]{Definition}
 \newtheorem{Assumption}[Thm]{Assumption}
 \newtheorem{Construction}[Thm]{Construction}
 \newtheorem*{Notation}{Notation}
 
 \theoremstyle{remark}
 \newtheorem{Rem}[Thm]{Remark}
+\newtheorem{Remark}[Thm]{Remark}
 \newtheorem{RemAd}[Thm]{Remark*}
 \newtheorem{Rems}[Thm]{Remarks}
+\newtheorem{Remarks}[Thm]{Remarks}
 \newtheorem{Exercise}[Thm]{Exercise}
 \newtheorem{Q}[Thm]{Question}
+\newtheorem{Question}[Thm]{Question}
 \newtheorem{A}[Thm]{Answer}
+\newtheorem{Answer}[Thm]{Answer}
 \newtheorem{Problem}[Thm]{Problem}
 \newtheorem{Warning}[Thm]{Warning}
 \declaretheorem[name=Example,sibling=Thm,qed={\lower-0.3ex\hbox{$◯$}}]{Ex}
 \declaretheorem[name=Examples,sibling=Ex,qed={\lower-0.3ex\hbox{$◯$}}]{Exs}
+\declaretheorem[name=Example,sibling=Thm,qed={\lower-0.3ex\hbox{$◯$}}]{Example}
+\declaretheorem[name=Examples,sibling=Ex,qed={\lower-0.3ex\hbox{$◯$}}]{Examples}
 
 % Unnumbered theorems
 \theoremstyle{plain}
