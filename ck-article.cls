@@ -67,7 +67,7 @@
 \newunicodechar{ }{ } % no-break space
 \newunicodechar{ }{ } % narrow no-break space
 
-\RequirePackage{scrpage2}
+\RequirePackage{scrlayer-scrpage}
 \RequirePackage{amsmath,amsfonts,amssymb,amsthm,thmtools}
 \RequirePackage{mathtools,extpfeil,xfrac}
 \RequirePackage{mparhack}  % correct placement of margin notes
@@ -262,6 +262,7 @@
 		\newtheorem{Thm}{Theorem}
 	\fi
 \fi
+\newtheorem{Theorem}[Thm]{Theorem}
 \newtheorem{Fact}[Thm]{Fact}
 \newtheorem{Claim}[Thm]{Claim}
 \newtheorem{Prop}[Thm]{Proposition}

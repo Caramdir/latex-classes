@@ -154,7 +154,7 @@
 ]{Liberation Mono}
 
 \def\ck@mathfont{XITS Math}
-\setmathfont{xits-math.otf}
+\setmathfont{XITS Math}
 \ifbw
     \colorlet{sectioningcolor}{black}
 \else
