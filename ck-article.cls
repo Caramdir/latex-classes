@@ -263,6 +263,7 @@
 	\fi
 \fi
 \newtheorem{Theorem}[Thm]{Theorem}
+\newtheorem{Satz}[Thm]{Satz}
 \newtheorem{Fact}[Thm]{Fact}
 \newtheorem{Claim}[Thm]{Claim}
 \newtheorem{Prop}[Thm]{Proposition}
@@ -302,6 +303,8 @@
 \declaretheorem[name=Examples,sibling=Ex,qed={\lower-0.3ex\hbox{$◯$}}]{Exs}
 \declaretheorem[name=Example,sibling=Thm,qed={\lower-0.3ex\hbox{$◯$}}]{Example}
 \declaretheorem[name=Examples,sibling=Ex,qed={\lower-0.3ex\hbox{$◯$}}]{Examples}
+\declaretheorem[name=Beispiel,sibling=Thm,qed={\lower-0.3ex\hbox{$◯$}}]{Beispiel}
+\declaretheorem[name=Beispiele,sibling=Ex,qed={\lower-0.3ex\hbox{$◯$}}]{Beispiele}
 
 % Unnumbered theorems
 \theoremstyle{plain}
