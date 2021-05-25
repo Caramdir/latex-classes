@@ -84,7 +84,7 @@
 \ifkindledxportrait
     \RequirePackage[papersize={13.3cm,18.8cm},lmargin=0.2cm,rmargin=0.5cm,bottom=0.2cm,top=0.8cm,headsep=0.3cm,footskip=0cm,twoside=false]{geometry}
 \fi
-\RequirePackage{scrpage2}
+\RequirePackage{scrlayer-scrpage}
 \RequirePackage{amsmath,amsfonts,amssymb,amsthm,thmtools}
 \RequirePackage{mathtools,extpfeil,xfrac}
 \RequirePackage{mparhack}  % correct placement of margin notes
