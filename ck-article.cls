@@ -133,17 +133,17 @@
   Ligatures=TeX,
   Scale=MatchUppercase,
   Numbers=OldStyle
-]{TeX Gyre Termes}
+]{Linux Libertine}
 
 \setsansfont[
   Ligatures=TeX,
   Scale=MatchUppercase
-]{TeX Gyre Heros}
+]{Linux Biolinum}
 
 \setmonofont[
   Ligatures=TeX,
   Scale=MatchLowercase
-]{TeX Gyre Cursor}
+]{Inconsolata}
 
 \setmathfont{TeX Gyre Termes Math}
 
